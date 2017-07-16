@@ -64,9 +64,6 @@ colorFailed b =
         colorAttribute black
 
 
-{-| This view needs to display the current goal, progress towards that goal, and whether the last keypress
-was wrong. Also some kind of progress bar to determine whether to progress to the next level?
--}
 view : Model -> Html Msg
 view model =
     div [ style pageStyles ]

@@ -48,6 +48,16 @@ c s =
             '?'
 
 
+subjoinedCharsLatin : List Char
+subjoinedCharsLatin =
+    map c <| split "" "SC"
+
+
+subjoinedChars : List Char
+subjoinedChars =
+    map c <| split "" "སྐ"
+
+
 tibChars : List Char
 tibChars =
     map c <| split "" "ཨཧཝཅཆེརཏཡིོུཕཙཚཛའསདབངམ་གལཞ།ཟཤཀཁཔནཐཇཉ"
@@ -56,6 +66,13 @@ tibChars =
 latinChars : List Char
 latinChars =
     map c <| split "" "`-=QWERTYUIOP[]\\ASDFGHJKL;'ZXCVBN,./"
+
+
+keymapSubjoined : Dict KeyCode Char
+keymapSubjoined =
+    Dict.fromList <|
+        map (\( char, c ) -> ( toCode char, c )) <|
+            map2 (,) subjoinedCharsLatin subjoinedChars
 
 
 keymap : Dict KeyCode Char

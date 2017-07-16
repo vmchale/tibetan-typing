@@ -4,9 +4,6 @@ import Platform.Cmd exposing (none)
 import Keyboard exposing (KeyCode, downs)
 
 
--- TODO call this 'Lesson' instead?
-
-
 type Difficulty
     = Consonants
     | Vowels
@@ -45,8 +42,6 @@ succ d =
             Sentences
 
 
-{-| Function to show the current difficulty level for the user.
--}
 showDifficulty : Difficulty -> String
 showDifficulty diff =
     case diff of

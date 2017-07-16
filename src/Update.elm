@@ -8,11 +8,8 @@ import Dict exposing (get)
 import Keyboard exposing (KeyCode)
 import Maybe exposing (..)
 import Char exposing (fromCode)
-import List exposing (take, drop)
+import List exposing (take, drop, reverse)
 import String exposing (fromChar, uncons, dropLeft)
-
-
---getNext : Difficulty -> Generator String
 
 
 addCompleted : Int -> String
@@ -25,13 +22,24 @@ addCompleted i =
             ""
 
 
+addCompletedSubjoined : Int -> String
+addCompletedSubjoined i =
+    case get i keymapSubjoined of
+        Just c ->
+            fromChar c
 
--- FIXME: this also needs to accept a bool for whether it should be subjoined
+        _ ->
+            ""
 
 
-mkKeyPress : Int -> Char
-mkKeyPress i =
-    withDefault (fromCode i) <| get i keymap
+mkKeyPress : Bool -> Int -> Char
+mkKeyPress subjoined i =
+    case subjoined of
+        False ->
+            withDefault (fromCode i) <| get i keymap
+
+        True ->
+            withDefault (fromCode i) <| get i keymapSubjoined
 
 
 getChar : String -> Char
@@ -53,17 +61,17 @@ update msg st =
         KeyMsg i ->
             let
                 fail =
-                    not (mkKeyPress i == st.nextChar)
+                    not (mkKeyPress st.composeNext i == st.nextChar)
             in
                 { st
-                    | lastKeyPress = Just (mkKeyPress i)
+                    | lastKeyPress = Just (mkKeyPress st.composeNext i)
                     , pastSuccesses = (not fail) :: take 19 st.pastSuccesses
                     , completed =
                         st.completed
-                            ++ (if (not fail) then
+                            ++ (if (not fail) && (not st.composeNext) then
                                     addCompleted i
                                 else
-                                    ""
+                                    addCompletedSubjoined i
                                )
                     , nextGoal =
                         if (not fail) then
@@ -75,7 +83,7 @@ update msg st =
                             getChar st.nextGoal
                         else
                             st.nextChar
-                    , failed = fail
-                    , composeNext = mkKeyPress i == 'M'
+                    , failed = fail && not (mkKeyPress st.composeNext i == 'M')
+                    , composeNext = mkKeyPress st.composeNext i == 'M'
                 }
                     ! []

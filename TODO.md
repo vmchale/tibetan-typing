@@ -1,6 +1,7 @@
 - [x] get it working
   - [ ] nicer design/bigger
-  - [ ] compose key
+  - [ ] compose key (fix so it doesn't display red)
+- [ ] use local storage to store user progress
 - [ ] longer texts as well
 - [ ] CONTRIBUTING.md guide
 - [ ] get more interesting phrases
