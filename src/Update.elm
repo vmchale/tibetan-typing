@@ -25,6 +25,10 @@ addCompleted i =
             ""
 
 
+
+-- FIXME: this also needs to accept a bool for whether it should be subjoined
+
+
 mkKeyPress : Int -> Char
 mkKeyPress i =
     withDefault (fromCode i) <| get i keymap
@@ -72,5 +76,6 @@ update msg st =
                         else
                             st.nextChar
                     , failed = fail
+                    , composeNext = mkKeyPress i == 'M'
                 }
                     ! []

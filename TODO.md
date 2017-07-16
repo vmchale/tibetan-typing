@@ -1,6 +1,8 @@
 - [x] get it working
   - [ ] nicer design/bigger
-  - [ ] show what you typed so far underneath?
+  - [ ] compose key
+- [ ] longer texts as well
 - [ ] CONTRIBUTING.md guide
 - [ ] get more interesting phrases
 - [ ] accessibility buttons
+  - [ ] large font

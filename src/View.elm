@@ -46,6 +46,11 @@ pageStyles =
     [ marginTop "80px", marginLeft "80px" ]
 
 
+tibetanText : Attribute Msg
+tibetanText =
+    style [ ( "font-size", "140%" ) ]
+
+
 onKeyDown : (Int -> msg) -> Attribute msg
 onKeyDown tagger =
     on "keydown" (Json.map tagger keyCode)
@@ -65,13 +70,13 @@ was wrong. Also some kind of progress bar to determine whether to progress to th
 view : Model -> Html Msg
 view model =
     div [ style pageStyles ]
-        [ p []
-            [ text "Type the following: "
-            , span [ colorAttribute green ] [ text model.completed ]
-            , span [ colorFailed model.failed ] [ text << fromChar <| model.nextChar ]
-            , span [] [ text model.nextGoal ]
+        [ p [] [ text "Type the following: " ]
+        , p []
+            [ span [ colorAttribute green, tibetanText ] [ text model.completed ]
+            , span [ colorFailed model.failed, tibetanText ] [ text << fromChar <| model.nextChar ]
+            , span [ tibetanText ] [ text model.nextGoal ]
             ]
-        , p [] [ text ("Current level: " ++ (showDifficulty model.difficultyLevel)) ]
+        , p [] [ text ("Current lesson: " ++ (showDifficulty model.difficultyLevel)) ]
         , p []
             [ text "Progress towards next lesson: "
             , span [ colorAttribute green ] [ text << first <| (progressBar model) ]
