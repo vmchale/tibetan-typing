@@ -88,4 +88,4 @@ type alias Model =
 
 
 init =
-    ( Model "བོད་སྐད་ལ་" "" 'ང' False False Nothing Consonants [], none )
+    ( Model "་བོད་སྐད་ལ་" "" 'ང' False False Nothing Consonants [], none )

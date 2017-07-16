@@ -1,3 +1,6 @@
-- [ ] get it working
+- [x] get it working
+  - [ ] nicer design/bigger
+  - [ ] show what you typed so far underneath?
+- [ ] CONTRIBUTING.md guide
 - [ ] get more interesting phrases
 - [ ] accessibility buttons

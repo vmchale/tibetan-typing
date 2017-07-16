@@ -1,8 +1,8 @@
 module Update.Lang exposing (..)
 
-import String exposing (split)
+import String exposing (split, uncons)
 import Char exposing (KeyCode, toCode)
-import List exposing (map)
+import List exposing (map, map2)
 import Array exposing (Array, fromList)
 import Dict exposing (Dict)
 
@@ -38,8 +38,28 @@ numeral =
 -- Ideally we'd have a nice flashing keyboard at the bottom too?
 
 
+c : String -> Char
+c s =
+    case uncons s of
+        Just ( x, _ ) ->
+            x
+
+        Nothing ->
+            '?'
+
+
+tibChars : List Char
+tibChars =
+    map c <| split "" "ཨཧཝཅཆེརཏཡིོུཕཙཚཛའསདབངམ་གལཞ།ཟཤཀཁཔནཐཇཉ"
+
+
+latinChars : List Char
+latinChars =
+    map c <| split "" "`-=QWERTYUIOP[]\\ASDFGHJKL;'ZXCVBN,./"
+
+
 keymap : Dict KeyCode Char
 keymap =
     Dict.fromList <|
-        map (\( char, c ) -> ( toCode char, c ))
-            [ ( '`', 'ཨ' ), ( 'F', 'བ' ) ]
+        map (\( char, c ) -> ( toCode char, c )) <|
+            map2 (,) latinChars tibChars
