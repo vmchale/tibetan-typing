@@ -1,0 +1,3 @@
+- [ ] get it working
+- [ ] get more interesting phrases
+- [ ] accessibility buttons
