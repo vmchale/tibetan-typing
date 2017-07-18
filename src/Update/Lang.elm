@@ -32,6 +32,11 @@ numeral =
     fromList <| split "" "༠༡༢༣༤༥༦༧༨༩"
 
 
+sentences : Array String
+sentences =
+    fromList [ "་བོད་སྐད་ལ་" ]
+
+
 
 -- We need to map the keycode to a Tibetan letter/numeral.
 -- This allows users to type in Tibetan even without installing any special keyboards.
@@ -68,15 +73,55 @@ latinChars =
     map c <| split "" "`-=QWERTYUIOP[]\\ASDFGHJKL;'ZXCVBN,./"
 
 
+helper : Char -> KeyCode
+helper c =
+    case c of
+        '[' ->
+            219
+
+        ']' ->
+            221
+
+        '\\' ->
+            220
+
+        ';' ->
+            186
+
+        '\'' ->
+            222
+
+        '/' ->
+            191
+
+        ',' ->
+            188
+
+        '=' ->
+            187
+
+        '-' ->
+            189
+
+        '`' ->
+            192
+
+        '.' ->
+            190
+
+        _ ->
+            toCode c
+
+
 keymapSubjoined : Dict KeyCode Char
 keymapSubjoined =
     Dict.fromList <|
-        map (\( char, c ) -> ( toCode char, c )) <|
+        map (\( char, c ) -> ( helper char, c )) <|
             map2 (,) subjoinedCharsLatin subjoinedChars
 
 
 keymap : Dict KeyCode Char
 keymap =
     Dict.fromList <|
-        map (\( char, c ) -> ( toCode char, c )) <|
+        map (\( char, c ) -> ( helper char, c )) <|
             map2 (,) latinChars tibChars

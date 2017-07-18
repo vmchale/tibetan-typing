@@ -5,12 +5,14 @@ import State exposing (..)
 import Color exposing (..)
 import Color.Convert exposing (colorToHex)
 import Html.Attributes exposing (style)
+import Html exposing (img)
 import Style exposing (..)
 import List exposing (..)
 import String exposing (concat, fromChar)
 import Tuple exposing (first, second)
 import Json.Decode as Json
 import Html.Events exposing (on, keyCode)
+import Html.Attributes exposing (attribute)
 
 
 type alias Styles =
@@ -110,4 +112,6 @@ view model =
             , span [ colorAttribute grey ] [ text << second <| (progressBar model) ]
             ]
         , helper model.difficultyLevel
+        , p [] []
+        , img [ attribute "src" "kb.jpg" ] []
         ]

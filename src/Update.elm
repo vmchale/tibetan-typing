@@ -3,13 +3,15 @@ module Update exposing (update)
 import State exposing (..)
 import Update.Lang exposing (..)
 import Random exposing (int, Generator)
-import Platform.Cmd exposing (none)
+import Platform.Cmd exposing (none, Cmd)
 import Dict exposing (get)
 import Keyboard exposing (KeyCode)
 import Maybe exposing (..)
 import Char exposing (fromCode)
 import List exposing (take, drop, reverse, repeat)
 import String exposing (fromChar, uncons, dropLeft)
+import Random exposing (int, map, generate)
+import Array exposing (Array, length)
 
 
 addCompleted : Int -> String
@@ -42,6 +44,26 @@ mkKeyPress subjoined i =
             withDefault (fromCode i) <| get i keymapSubjoined
 
 
+const : a -> (b -> a)
+const a =
+    (\x -> a)
+
+
+fromMaybe : a -> Maybe a -> a
+fromMaybe def val =
+    case val of
+        Just v ->
+            v
+
+        Nothing ->
+            def
+
+
+getNext : Array String -> Cmd Msg
+getNext ls =
+    generate (\i -> RandomString << fromMaybe "Error" << (Array.get i) <| consonants) (int 1 (length ls - 1))
+
+
 getChar : String -> Char
 getChar s =
     case uncons s of
@@ -58,10 +80,22 @@ update msg st =
         None ->
             st ! []
 
+        RandomString s ->
+            { st | nextGoal = s, nextChar = getChar s, failed = False } ! []
+
         KeyMsg i ->
             let
                 fail =
                     not (mkKeyPress st.composeNext i == st.nextChar)
+
+                done =
+                    (not fail)
+                        && case uncons (dropLeft 1 st.nextGoal) of
+                            Just _ ->
+                                False
+
+                            Nothing ->
+                                True
             in
                 { st
                     | lastKeyPress = Just (mkKeyPress st.composeNext i)
@@ -75,22 +109,29 @@ update msg st =
                             else
                                 x
                     , completed =
-                        st.completed
-                            ++ (if (not fail) && (not st.composeNext) then
-                                    addCompleted i
-                                else
-                                    addCompletedSubjoined i
-                               )
+                        if not done then
+                            st.completed
+                                ++ (if (not fail) && (not st.composeNext) then
+                                        addCompleted i
+                                    else
+                                        addCompletedSubjoined i
+                                   )
+                        else
+                            ""
                     , nextGoal =
                         if (not fail) then
                             dropLeft 1 st.nextGoal
-                        else
+                        else if not done then
                             st.nextGoal
-                    , nextChar =
-                        if (not fail) then
-                            getChar st.nextGoal
                         else
+                            ""
+                    , nextChar =
+                        if (not fail) && not done then
+                            getChar st.nextGoal
+                        else if not done then
                             st.nextChar
+                        else
+                            ' '
                     , failed = fail && not (mkKeyPress st.composeNext i == 'M')
                     , difficultyLevel =
                         let
@@ -103,4 +144,8 @@ update msg st =
                                 st.difficultyLevel
                     , composeNext = mkKeyPress st.composeNext i == 'M'
                 }
-                    ! []
+                    ! (if (not done) then
+                        []
+                       else
+                        [ getNext consonants ]
+                      )

@@ -18,6 +18,7 @@ type Difficulty
 type Msg
     = None
     | KeyMsg KeyCode
+    | RandomString String
 
 
 succ : Difficulty -> Difficulty
@@ -83,4 +84,4 @@ type alias Model =
 
 
 init =
-    ( Model "་བོད་སྐད་ལ་" "" 'ང' False False Nothing Consonants [], none )
+    ( Model "ང" "" 'ང' False False Nothing Consonants [], none )
