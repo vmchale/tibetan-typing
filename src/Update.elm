@@ -8,7 +8,7 @@ import Dict exposing (get)
 import Keyboard exposing (KeyCode)
 import Maybe exposing (..)
 import Char exposing (fromCode)
-import List exposing (take, drop, reverse)
+import List exposing (take, drop, reverse, repeat)
 import String exposing (fromChar, uncons, dropLeft)
 
 
@@ -49,7 +49,7 @@ getChar s =
             c
 
         Nothing ->
-            '༂'
+            'བ'
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -65,7 +65,15 @@ update msg st =
             in
                 { st
                     | lastKeyPress = Just (mkKeyPress st.composeNext i)
-                    , pastSuccesses = (not fail) :: take 19 st.pastSuccesses
+                    , pastSuccesses =
+                        let
+                            x =
+                                (not fail) :: take 19 st.pastSuccesses
+                        in
+                            if x == repeat 20 True then
+                                repeat 20 False
+                            else
+                                x
                     , completed =
                         st.completed
                             ++ (if (not fail) && (not st.composeNext) then
@@ -84,6 +92,15 @@ update msg st =
                         else
                             st.nextChar
                     , failed = fail && not (mkKeyPress st.composeNext i == 'M')
+                    , difficultyLevel =
+                        let
+                            x =
+                                (not fail) :: take 19 st.pastSuccesses
+                        in
+                            if x == repeat 20 True then
+                                succ st.difficultyLevel
+                            else
+                                st.difficultyLevel
                     , composeNext = mkKeyPress st.composeNext i == 'M'
                 }
                     ! []

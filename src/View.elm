@@ -64,6 +64,36 @@ colorFailed b =
         colorAttribute black
 
 
+helper : Difficulty -> Html Msg
+helper diff =
+    case diff of
+        Consonants ->
+            p [] [ text "Use the chart below to type consonants." ]
+
+        Vowels ->
+            p []
+                [ text "Vowel markers always appear modifying a consonant. Type the vowel after the consonant."
+                ]
+
+        Words ->
+            p [] [ text "Words separate units by the '་' character (called a ཚེག). These units consist of a root letter, and possibly a vowel marker, prefix letter, suffix, or second suffix" ]
+
+        Subjoined ->
+            p [] [ text "To subjoin a letter, type the top consonant, followed by the compose key ('∘') and then the bottom letter. Type any vowels after that." ]
+
+        Phrases ->
+            p [] []
+
+        Sentences ->
+            p [] [ text "Separate units of text know as དོན་ཚན་with a ། (called a ཤད་)" ]
+
+        Punctuation ->
+            p [] [ text "The ཡིང་མགོ་ (༄༅) is used in དཔེ་ཆ་, but it is not used in books." ]
+
+        Numerals ->
+            p [] []
+
+
 view : Model -> Html Msg
 view model =
     div [ style pageStyles ]
@@ -79,4 +109,5 @@ view model =
             , span [ colorAttribute green ] [ text << first <| (progressBar model) ]
             , span [ colorAttribute grey ] [ text << second <| (progressBar model) ]
             ]
+        , helper model.difficultyLevel
         ]

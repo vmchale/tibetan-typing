@@ -50,12 +50,12 @@ c s =
 
 subjoinedCharsLatin : List Char
 subjoinedCharsLatin =
-    map c <| split "" "SC"
+    map c <| split "" "9C9Y9L9R"
 
 
 subjoinedChars : List Char
 subjoinedChars =
-    map c <| split "" "སྐ"
+    map c <| split "" "སྐཀྱཀླཀྲ"
 
 
 tibChars : List Char
