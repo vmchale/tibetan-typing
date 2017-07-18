@@ -103,7 +103,12 @@ view model =
         , p []
             [ span [ colorAttribute green, tibetanText ] [ text model.completed ]
             , span [ colorFailed model.failed, tibetanText ] [ text << fromChar <| model.nextChar ]
-            , span [ tibetanText ] [ text model.nextGoal ]
+            , span [ tibetanText ]
+                [ if String.length model.nextGoal > 1 then
+                    text model.nextGoal
+                  else
+                    text ""
+                ]
             ]
         , p [] [ text ("Current lesson: " ++ (showDifficulty model.difficultyLevel)) ]
         , p []

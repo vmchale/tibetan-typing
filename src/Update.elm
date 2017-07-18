@@ -61,7 +61,7 @@ fromMaybe def val =
 
 getNext : Array String -> Cmd Msg
 getNext ls =
-    generate (\i -> RandomString << fromMaybe "Error" << (Array.get i) <| consonants) (int 1 (length ls - 1))
+    generate (\i -> RandomString << fromMaybe "Error" << (Array.get i) <| ls) (int 0 (length ls - 1))
 
 
 getChar : String -> Char
@@ -72,6 +72,19 @@ getChar s =
 
         Nothing ->
             'བ'
+
+
+getArray : Difficulty -> Array String
+getArray d =
+    case d of
+        Consonants ->
+            consonants
+
+        Vowels ->
+            vowels
+
+        _ ->
+            subjoined
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -147,5 +160,5 @@ update msg st =
                     ! (if (not done) then
                         []
                        else
-                        [ getNext consonants ]
+                        [ getNext << getArray <| st.difficultyLevel ]
                       )

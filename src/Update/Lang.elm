@@ -3,7 +3,7 @@ module Update.Lang exposing (..)
 import String exposing (split, uncons)
 import Char exposing (KeyCode, toCode)
 import List exposing (map, map2)
-import Array exposing (Array, fromList)
+import Array exposing (Array, fromList, append)
 import Dict exposing (Dict)
 
 
@@ -25,6 +25,16 @@ latak =
 ratak : Array String
 ratak =
     fromList [ "ཀྲ", "ཁྲ", "གྲ", "དྲ", "ནྲ", "ཕྲ", "པྲ", "བྲ", "མྲ", "ཤྲ", "སྲ", "ཧྲ" ]
+
+
+subjoined : Array String
+subjoined =
+    append yatak (append latak ratak)
+
+
+vowels : Array String
+vowels =
+    fromList [ "ཨ", "ཨེ", "ཨི", "ཨུ", "ཨོ", "ཧ", "ཧེ", "ཧི", "ཧུ", "ཧོ" ]
 
 
 numeral : Array String
