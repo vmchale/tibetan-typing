@@ -45,7 +45,7 @@ progressBar model =
 
 pageStyles : Styles
 pageStyles =
-    [ marginTop "80px", marginLeft "80px" ]
+    [ marginTop "80px", marginLeft "80px", marginRight "160px" ]
 
 
 {-| First argument is whether the text should be enlarged
@@ -110,7 +110,7 @@ helper diff b =
 view : Model -> Html Msg
 view model =
     div [ style pageStyles ]
-        [ div [ style [ ( "align", "right" ) ] ] [ p [] [ text "Accessibility Options" ] ]
+        [ div [] [ p [ style [ ( "text-align", "right" ) ] ] [ text "Press <F2> for large text" ] ]
         , p []
             [ span [ largeText model.largeText ] [ text "Type the following: " ]
             ]
@@ -119,7 +119,7 @@ view model =
             , span [ colorFailed model.failed, tibetanText model.largeText ] [ text << fromChar <| model.nextChar ]
             , span [ tibetanText model.largeText ] [ text model.nextGoal ]
             ]
-        , p [] [ text ("Current lesson: " ++ (showDifficulty model.difficultyLevel)) ]
+        , p [] [ span [ largeText model.largeText ] [ text ("Current lesson: " ++ (showDifficulty model.difficultyLevel)) ] ]
         , p []
             [ span [ largeText model.largeText ] [ text "Progress towards next lesson: " ]
             , span [ colorAttribute green ] [ text << first <| (progressBar model) ]

@@ -155,7 +155,7 @@ update msg st =
                     , completed =
                         if not done then
                             st.completed
-                                ++ (if (not fail) && (not st.composeNext) then
+                                ++ (if (not fail) then
                                         if (not st.composeNext) then
                                             addCompleted i
                                         else
