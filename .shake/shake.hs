@@ -23,6 +23,11 @@ main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
         putNormal "Opening..."
         cmd "google-chrome index.html"
 
+    phony "deploy" $ do
+        need ["index.html"]
+        putNormal "Copying to ../../rust/nessa-site/static/tutor.html"
+        cmd "cp index.html ../../rust/nessa-site/static/tutor.html"
+
     "index.html" %> \_ -> do
         sourceFiles <- getDirectoryFiles "" ["src//*.elm"]
         need sourceFiles
