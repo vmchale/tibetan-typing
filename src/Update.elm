@@ -126,6 +126,9 @@ update msg st =
         RandomString s ->
             { st | nextGoal = dropLeft 1 s, nextChar = getChar s, failed = False } ! []
 
+        KeyMsg 113 ->
+            { st | largeText = not st.largeText } ! []
+
         KeyMsg i ->
             let
                 fail =

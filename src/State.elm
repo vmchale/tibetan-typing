@@ -80,8 +80,9 @@ type alias Model =
     , lastKeyPress : Maybe Char -- last key press in case we need to compose something
     , difficultyLevel : Difficulty -- e.g. consonants, subjoined letters, words, etc.
     , pastSuccesses : List Bool -- for determining whether to progress to the next level
+    , largeText : Bool -- whether to display large text for accessibility purposes.
     }
 
 
 init =
-    ( Model "" "" 'ང' False False Nothing Consonants [], none )
+    ( Model "" "" 'ང' False False Nothing Consonants [] False, none )

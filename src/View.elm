@@ -48,9 +48,22 @@ pageStyles =
     [ marginTop "80px", marginLeft "80px" ]
 
 
-tibetanText : Attribute Msg
-tibetanText =
-    style [ ( "font-size", "140%" ) ]
+{-| First argument is whether the text should be enlarged
+-}
+tibetanText : Bool -> Attribute Msg
+tibetanText b =
+    if not b then
+        style [ ( "font-size", "140%" ) ]
+    else
+        style [ ( "font-size", "280%" ) ]
+
+
+largeText : Bool -> Attribute Msg
+largeText b =
+    if b then
+        style [ ( "font-size", "200%" ) ]
+    else
+        style []
 
 
 onKeyDown : (Int -> msg) -> Attribute msg
@@ -66,31 +79,29 @@ colorFailed b =
         colorAttribute black
 
 
-helper : Difficulty -> Html Msg
-helper diff =
+helper : Difficulty -> Bool -> Html Msg
+helper diff b =
     case diff of
         Consonants ->
-            p [] [ text "Use the picture below to type consonants." ]
+            p [] [ span [ largeText b ] [ text "Use the picture below to type consonants." ] ]
 
         Vowels ->
-            p []
-                [ text "Vowel markers always appear modifying a consonant. Type the vowel after the consonant."
-                ]
+            p [] [ span [ largeText b ] [ text "Vowel markers always appear modifying a consonant. Type the vowel after the consonant." ] ]
 
         Words ->
-            p [] [ text "Words separate units by the '་' character (called a ཚེག). These units consist of a root letter, and possibly a vowel marker, prefix letter, suffix, or second suffix" ]
+            p [] [ span [ largeText b ] [ text "Words separate units by the '་' character (called a ཚེག). These units consist of a root letter, and possibly a vowel marker, prefix letter, suffix, or second suffix" ] ]
 
         Subjoined ->
-            p [] [ text "To subjoin a letter, type the top consonant, followed by the compose key ('m') and then the bottom letter. Type any vowels after that." ]
+            p [] [ span [ largeText b ] [ text "To subjoin a letter, type the top consonant, followed by the compose key ('m') and then the bottom letter. Type any vowels after that." ] ]
 
         Phrases ->
             p [] []
 
         Sentences ->
-            p [] [ text "Separate units of text know as དོན་ཚན་with a ། (called a ཤད་)" ]
+            p [] [ span [ largeText b ] [ text "Separate units of text know as དོན་ཚན་with a ། (called a ཤད་)" ] ]
 
         Punctuation ->
-            p [] [ text "The ཡིང་མགོ་ (༄༅) is used in དཔེ་ཆ་, but it is not used in books." ]
+            p [] [ span [ largeText b ] [ text "The ཡིང་མགོ་ (༄༅) is used in དཔེ་ཆ་, but it is not used in books." ] ]
 
         Numerals ->
             p [] []
@@ -99,19 +110,22 @@ helper diff =
 view : Model -> Html Msg
 view model =
     div [ style pageStyles ]
-        [ p [] [ text "Type the following: " ]
+        [ div [ style [ ( "align", "right" ) ] ] [ p [] [ text "Accessibility Options" ] ]
         , p []
-            [ span [ colorAttribute green, tibetanText ] [ text model.completed ]
-            , span [ colorFailed model.failed, tibetanText ] [ text << fromChar <| model.nextChar ]
-            , span [ tibetanText ] [ text model.nextGoal ]
+            [ span [ largeText model.largeText ] [ text "Type the following: " ]
+            ]
+        , p []
+            [ span [ colorAttribute green, tibetanText model.largeText ] [ text model.completed ]
+            , span [ colorFailed model.failed, tibetanText model.largeText ] [ text << fromChar <| model.nextChar ]
+            , span [ tibetanText model.largeText ] [ text model.nextGoal ]
             ]
         , p [] [ text ("Current lesson: " ++ (showDifficulty model.difficultyLevel)) ]
         , p []
-            [ text "Progress towards next lesson: "
+            [ span [ largeText model.largeText ] [ text "Progress towards next lesson: " ]
             , span [ colorAttribute green ] [ text << first <| (progressBar model) ]
             , span [ colorAttribute grey ] [ text << second <| (progressBar model) ]
             ]
-        , helper model.difficultyLevel
+        , helper model.difficultyLevel model.largeText
         , p [] []
         , img [ attribute "src" "kb.jpg" ] []
         ]
