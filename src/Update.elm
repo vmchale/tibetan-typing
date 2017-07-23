@@ -8,7 +8,7 @@ import Dict exposing (get)
 import Keyboard exposing (KeyCode)
 import Maybe exposing (..)
 import Char exposing (fromCode)
-import List exposing (take, drop, reverse, repeat)
+import List exposing (take, drop, reverse, repeat, foldr)
 import String exposing (fromChar, uncons, dropLeft)
 import Random exposing (int, map, generate)
 import Array exposing (Array, length)
@@ -74,6 +74,21 @@ getChar s =
             'བ'
 
 
+enoughProgress : List Bool -> Bool
+enoughProgress l =
+    (foldr
+        (\b n ->
+            if b then
+                n + 1
+            else
+                n
+        )
+        0
+        l
+    )
+        >= 17
+
+
 getArray : Difficulty -> Array String
 getArray d =
     case d of
@@ -117,7 +132,7 @@ update msg st =
                             x =
                                 (not fail) :: take 19 st.pastSuccesses
                         in
-                            if x == repeat 20 True then
+                            if enoughProgress x then
                                 repeat 20 False
                             else
                                 x
@@ -151,7 +166,7 @@ update msg st =
                             x =
                                 (not fail) :: take 19 st.pastSuccesses
                         in
-                            if x == repeat 20 True then
+                            if enoughProgress x then
                                 succ st.difficultyLevel
                             else
                                 st.difficultyLevel
