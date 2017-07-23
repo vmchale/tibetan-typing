@@ -40,7 +40,7 @@ progressBar model =
         count =
             sum <| List.map boolInt past20
     in
-        ( String.concat <| List.repeat count "-", String.concat <| List.repeat (20 - count) "-" )
+        ( String.concat <| List.repeat count "-", String.concat <| List.repeat (17 - count) "-" )
 
 
 pageStyles : Styles
@@ -70,7 +70,7 @@ helper : Difficulty -> Html Msg
 helper diff =
     case diff of
         Consonants ->
-            p [] [ text "Use the chart below to type consonants." ]
+            p [] [ text "Use the picture below to type consonants." ]
 
         Vowels ->
             p []
@@ -81,7 +81,7 @@ helper diff =
             p [] [ text "Words separate units by the '་' character (called a ཚེག). These units consist of a root letter, and possibly a vowel marker, prefix letter, suffix, or second suffix" ]
 
         Subjoined ->
-            p [] [ text "To subjoin a letter, type the top consonant, followed by the compose key ('∘') and then the bottom letter. Type any vowels after that." ]
+            p [] [ text "To subjoin a letter, type the top consonant, followed by the compose key ('m') and then the bottom letter. Type any vowels after that." ]
 
         Phrases ->
             p [] []

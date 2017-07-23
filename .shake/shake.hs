@@ -18,6 +18,11 @@ main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
         --removeFilesAfter ".shake" ["//*"]
         cmd "rm -f index.html .shake/.shake.database .shake/.shake.lock .shake/shake.o .shake/shake.hi"
 
+    phony "open" $ do
+        need ["index.html"]
+        putNormal "Opening..."
+        cmd "google-chrome index.html"
+
     "index.html" %> \_ -> do
         sourceFiles <- getDirectoryFiles "" ["src//*.elm"]
         need sourceFiles

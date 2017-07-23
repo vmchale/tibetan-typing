@@ -98,8 +98,23 @@ getArray d =
         Vowels ->
             vowels
 
-        _ ->
+        Subjoined ->
             subjoined
+
+        Words ->
+            words
+
+        Phrases ->
+            phrases
+
+        Sentences ->
+            sentences
+
+        Numerals ->
+            numerals
+
+        Punctuation ->
+            punctuation
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -130,8 +145,10 @@ update msg st =
                         in
                             if enoughProgress x then
                                 repeat 20 False
-                            else
+                            else if not (mkKeyPress st.composeNext i == 'M') then
                                 x
+                            else
+                                st.pastSuccesses
                     , completed =
                         if not done then
                             st.completed

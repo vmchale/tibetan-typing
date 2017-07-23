@@ -16,3 +16,12 @@ you find something!
 ## Use
 
 You can try it out yourself [here](http://vmchale.com/tutor.html).
+
+## Building it
+
+The easiest way to build the project is to first install the [elm
+platform](https://guide.elm-lang.org/install.html). Then:
+
+```bash
+ $ elm-make src/main.elm
+```
