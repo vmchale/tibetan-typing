@@ -110,7 +110,7 @@ helper diff b =
 view : Model -> Html Msg
 view model =
     div [ style pageStyles ]
-        [ div [] [ p [ style [ ( "text-align", "right" ) ] ] [ text "Press <F2> for large text" ] ]
+        [ div [] [ p [ style [ ( "text-align", "right" ) ] ] [ span [ largeText model.largeText ] [ text "Press <F2> to toggle large text" ] ] ]
         , p []
             [ span [ largeText model.largeText ] [ text "Type the following: " ]
             ]
@@ -122,8 +122,8 @@ view model =
         , p [] [ span [ largeText model.largeText ] [ text ("Current lesson: " ++ (showDifficulty model.difficultyLevel)) ] ]
         , p []
             [ span [ largeText model.largeText ] [ text "Progress towards next lesson: " ]
-            , span [ colorAttribute green ] [ text << first <| (progressBar model) ]
-            , span [ colorAttribute grey ] [ text << second <| (progressBar model) ]
+            , span [ colorAttribute green ] [ span [ largeText model.largeText ] [ text << first <| (progressBar model) ] ]
+            , span [ colorAttribute grey ] [ span [ largeText model.largeText ] [ text << second <| (progressBar model) ] ]
             ]
         , helper model.difficultyLevel model.largeText
         , p [] []
