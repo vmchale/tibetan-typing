@@ -109,7 +109,7 @@ update msg st =
             st ! []
 
         RandomString s ->
-            { st | nextGoal = s, nextChar = getChar s, failed = False } ! []
+            { st | nextGoal = dropLeft 1 s, nextChar = getChar s, failed = False } ! []
 
         KeyMsg i ->
             let
@@ -118,12 +118,8 @@ update msg st =
 
                 done =
                     (not fail)
-                        && case uncons (dropLeft 1 st.nextGoal) of
-                            Just _ ->
-                                False
-
-                            Nothing ->
-                                True
+                        && String.length st.nextGoal
+                        == 0
             in
                 { st
                     | lastKeyPress = Just (mkKeyPress st.composeNext i)
@@ -140,9 +136,12 @@ update msg st =
                         if not done then
                             st.completed
                                 ++ (if (not fail) && (not st.composeNext) then
-                                        addCompleted i
+                                        if (not st.composeNext) then
+                                            addCompleted i
+                                        else
+                                            addCompletedSubjoined i
                                     else
-                                        addCompletedSubjoined i
+                                        ""
                                    )
                         else
                             ""

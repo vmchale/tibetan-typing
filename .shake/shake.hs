@@ -15,8 +15,8 @@ main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
     phony "clean" $ do
         putNormal "Cleaning files..."
         removeFilesAfter "elm-stuff" ["//*"]
-        removeFilesAfter ".shake" ["//*"]
-        cmd "rm -f index.html"
+        --removeFilesAfter ".shake" ["//*"]
+        cmd "rm -f index.html .shake/.shake.database .shake/.shake.lock .shake/shake.o .shake/shake.hi"
 
     "index.html" %> \_ -> do
         sourceFiles <- getDirectoryFiles "" ["src//*.elm"]

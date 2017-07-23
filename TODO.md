@@ -7,3 +7,4 @@
 - [ ] get more interesting phrases
 - [ ] accessibility buttons
   - [ ] large font
+- [ ] don't penalize e.g. the alt key 
