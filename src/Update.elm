@@ -1,4 +1,4 @@
-module Update exposing (update)
+module Update exposing (update, levelNum)
 
 import State exposing (..)
 import Update.Lang exposing (..)
@@ -74,8 +74,11 @@ getChar s =
             'བ'
 
 
-enoughProgress : List Bool -> Bool
-enoughProgress l =
+{-| Takes the past record and the current lesson, returns 'True' (i.e. we can progress)
+when the user has hit 85% of the past keys correctly.
+-}
+enoughProgress : List Bool -> Difficulty -> Bool
+enoughProgress l d =
     (foldr
         (\b n ->
             if b then
@@ -86,7 +89,35 @@ enoughProgress l =
         0
         l
     )
-        >= 17
+        >= (17 * levelNum d)
+        // 20
+
+
+{-| Set the number of correct keypresses required to progress to the next level
+-}
+levelNum : Difficulty -> Int
+levelNum d =
+    case d of
+        Consonants ->
+            20
+
+        Vowels ->
+            40
+
+        Subjoined ->
+            30
+
+        Words ->
+            30
+
+        Phrases ->
+            60
+
+        Sentences ->
+            200
+
+        _ ->
+            100
 
 
 getArray : Difficulty -> Array String
@@ -138,16 +169,19 @@ update msg st =
                     (not fail)
                         && String.length st.nextGoal
                         == 0
+
+                recordNum =
+                    levelNum st.difficultyLevel
             in
                 { st
                     | lastKeyPress = Just (mkKeyPress st.composeNext i)
                     , pastSuccesses =
                         let
                             x =
-                                (not fail) :: take 19 st.pastSuccesses
+                                (not fail) :: take (recordNum - 1) st.pastSuccesses
                         in
-                            if enoughProgress x then
-                                repeat 20 False
+                            if enoughProgress x st.difficultyLevel then
+                                repeat recordNum False
                             else if not (mkKeyPress st.composeNext i == 'M') then
                                 x
                             else
@@ -183,9 +217,9 @@ update msg st =
                     , difficultyLevel =
                         let
                             x =
-                                (not fail) :: take 19 st.pastSuccesses
+                                (not fail) :: take (recordNum - 1) st.pastSuccesses
                         in
-                            if enoughProgress x then
+                            if enoughProgress x st.difficultyLevel then
                                 succ st.difficultyLevel
                             else
                                 st.difficultyLevel

@@ -13,6 +13,7 @@ import Tuple exposing (first, second)
 import Json.Decode as Json
 import Html.Events exposing (on, keyCode)
 import Html.Attributes exposing (attribute)
+import Update exposing (levelNum)
 
 
 type alias Styles =
@@ -27,8 +28,8 @@ colorAttribute color =
 progressBar : Model -> ( String, String )
 progressBar model =
     let
-        past20 =
-            take 20 model.pastSuccesses
+        past =
+            take (levelNum model.difficultyLevel) model.pastSuccesses
 
         boolInt : Bool -> Int
         boolInt b =
@@ -38,14 +39,14 @@ progressBar model =
                 0
 
         count =
-            sum <| List.map boolInt past20
+            sum <| List.map boolInt past
     in
-        ( String.concat <| List.repeat count "-", String.concat <| List.repeat (17 - count) "-" )
+        ( String.concat <| List.repeat count "-", String.concat <| List.repeat ((levelNum model.difficultyLevel) * 17 // 20 - count) "-" )
 
 
 pageStyles : Styles
 pageStyles =
-    [ marginTop "80px", marginLeft "80px", marginRight "160px" ]
+    [ marginTop "80px", marginLeft "80px", marginRight "160px", ( "font", "Tahoma, Geneva, sans-serif" ) ]
 
 
 {-| First argument is whether the text should be enlarged
