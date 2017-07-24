@@ -12,6 +12,7 @@ import List exposing (take, drop, reverse, repeat, foldr)
 import String exposing (fromChar, uncons, dropLeft)
 import Random exposing (int, map, generate)
 import Array exposing (Array, length)
+import Task exposing (Task)
 
 
 addCompleted : Int -> String
@@ -108,7 +109,7 @@ levelNum d =
             30
 
         Words ->
-            30
+            35
 
         Phrases ->
             60

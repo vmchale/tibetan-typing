@@ -1,7 +1,9 @@
 module State exposing (..)
 
-import Platform.Cmd exposing (none)
+import Platform.Cmd exposing (none, batch)
 import Keyboard exposing (KeyCode, downs)
+import Array exposing (Array, length)
+import Task exposing (Task)
 
 
 type Difficulty
@@ -72,6 +74,19 @@ toInt d =
             7
 
 
+fromString : String -> Difficulty
+fromString str =
+    case str of
+        "Consonants" ->
+            Consonants
+
+        "Vowels" ->
+            Vowels
+
+        _ ->
+            Consonants
+
+
 showDifficulty : Difficulty -> String
 showDifficulty diff =
     case diff of
@@ -114,5 +129,11 @@ type alias Model =
     }
 
 
-init =
-    ( Model "" "" 'ང' False False Nothing Consonants Consonants [] False, none )
+init : Maybe String -> ( Model, Cmd Msg )
+init savedState =
+    case savedState of
+        Just str ->
+            ( Model "" "" 'ང' False False Nothing Consonants (fromString str) [] False, none )
+
+        Nothing ->
+            ( Model "" "" 'ང' False False Nothing Consonants Consonants [] False, none )

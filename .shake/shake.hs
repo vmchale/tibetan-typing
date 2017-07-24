@@ -29,6 +29,6 @@ main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
         cmd "cp index.html ../../rust/nessa-site/static/tutor.html"
 
     "index.html" %> \_ -> do
-        sourceFiles <- getDirectoryFiles "" ["src//*.elm"]
+        sourceFiles <- getDirectoryFiles "" ["src//*.elm", "elm-package.json"]
         need sourceFiles
-        cmd "elm-make --yes src/main.elm"
+        cmd "elm-make --yes src/Main.elm --output tutor.js"
