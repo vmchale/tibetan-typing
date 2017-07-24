@@ -83,6 +83,24 @@ fromString str =
         "Vowels" ->
             Vowels
 
+        "Subjoined Letters" ->
+            Subjoined
+
+        "Words" ->
+            Words
+
+        "Phrases" ->
+            Phrases
+
+        "Sentences" ->
+            Sentences
+
+        "Punctuation & Typographical Marks" ->
+            Punctuation
+
+        "Tibetan Numerals" ->
+            Numerals
+
         _ ->
             Consonants
 

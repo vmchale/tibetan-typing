@@ -10,25 +10,24 @@ import Development.Shake.Util
 
 main :: IO ()
 main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
-    want ["index.html"]
+    want ["index.html", "tutor.js"]
 
     phony "clean" $ do
         putNormal "Cleaning files..."
         removeFilesAfter "elm-stuff" ["//*"]
-        --removeFilesAfter ".shake" ["//*"]
         cmd "rm -f tutor.js .shake/.shake.database .shake/.shake.lock .shake/shake.o .shake/shake.hi"
 
     phony "open" $ do
-        need ["index.html"]
+        need ["index.html", "tutor.js"]
         putNormal "Opening..."
         cmd "google-chrome index.html"
 
     phony "deploy" $ do
-        need ["index.html"]
+        need ["index.html", "tutor.js"]
         putNormal "Copying to ../../rust/nessa-site/static/tutor.html"
         cmd "cp index.html ../../rust/nessa-site/static/tutor.html"
 
-    "index.html" %> \_ -> do
-        sourceFiles <- getDirectoryFiles "" ["src//*.elm", "elm-package.json"]
+    "tutor.js" %> \_ -> do
+        sourceFiles <- getDirectoryFiles "" ["src//*.elm", "elm-package.json", "index.html"]
         need sourceFiles
         cmd "elm-make --yes src/Main.elm --output tutor.js"

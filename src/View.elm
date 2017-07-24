@@ -111,7 +111,7 @@ helper diff b =
 
 allDifficulties : List Difficulty
 allDifficulties =
-    [ Consonants, Vowels, Words, Phrases, Sentences, Punctuation, Numerals ]
+    [ Consonants, Vowels, Subjoined, Words, Phrases, Sentences, Punctuation, Numerals ]
 
 
 displayMessage : Bool -> Difficulty -> Html Msg
