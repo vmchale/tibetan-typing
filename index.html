@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Elm • TodoMVC</title>
+  <script type="text/javascript" src="tutor.js"></script>
+  <!--<link rel="stylesheet" href="style.css">-->
+</head>
+
+<body>
+</body>
+
+<script type="text/javascript">
+var storedState = localStorage.getItem('tutor-difficulty');
+var startingState = storedState ? JSON.parse(storedState) : null;
+var tutor = Elm.Main.fullscreen(startingState);
+tutor.ports.setStorage.subscribe(function(state) {
+    localStorage.setItem('tutor-difficulty', JSON.stringify(state));
+});
+</script>
+
+</html>

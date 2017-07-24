@@ -16,7 +16,7 @@ main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
         putNormal "Cleaning files..."
         removeFilesAfter "elm-stuff" ["//*"]
         --removeFilesAfter ".shake" ["//*"]
-        cmd "rm -f index.html .shake/.shake.database .shake/.shake.lock .shake/shake.o .shake/shake.hi"
+        cmd "rm -f tutor.js .shake/.shake.database .shake/.shake.lock .shake/shake.o .shake/shake.hi"
 
     phony "open" $ do
         need ["index.html"]
