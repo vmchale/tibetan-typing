@@ -5,6 +5,7 @@ import State exposing (..)
 import Color exposing (..)
 import Color.Convert exposing (colorToHex)
 import Html.Attributes exposing (style)
+import Html.Events exposing (onClick)
 import Html exposing (img)
 import Style exposing (..)
 import List exposing (..)
@@ -108,6 +109,19 @@ helper diff b =
             p [] []
 
 
+allDifficulties : List Difficulty
+allDifficulties =
+    [ Consonants, Vowels, Words, Phrases, Sentences, Punctuation, Numerals ]
+
+
+displayMessage : Bool -> Difficulty -> Html Msg
+displayMessage b difficulty =
+    div []
+        [ span [ largeText b ] [ text "Available Lessons: " ]
+        , div [] (intersperse (text " | ") <| (map2 (\diff str -> div [ onClick (SetDifficulty diff) ] [ text str ]) allDifficulties (List.map showDifficulty (filter (\d -> toInt d <= toInt difficulty) allDifficulties))))
+        ]
+
+
 view : Model -> Html Msg
 view model =
     div [ style pageStyles ]
@@ -126,6 +140,7 @@ view model =
             , span [ colorAttribute green ] [ span [ largeText model.largeText ] [ text << first <| (progressBar model) ] ]
             , span [ colorAttribute grey ] [ span [ largeText model.largeText ] [ text << second <| (progressBar model) ] ]
             ]
+        , displayMessage model.largeText model.maxDifficulty
         , helper model.difficultyLevel model.largeText
         , p [] []
         , img [ attribute "src" "kb.jpg" ] []

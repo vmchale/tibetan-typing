@@ -19,6 +19,7 @@ type Msg
     = None
     | KeyMsg KeyCode
     | RandomString String
+    | SetDifficulty Difficulty
 
 
 succ : Difficulty -> Difficulty
@@ -43,6 +44,34 @@ succ d =
             Sentences
 
 
+toInt : Difficulty -> Int
+toInt d =
+    case d of
+        Consonants ->
+            1
+
+        Vowels ->
+            2
+
+        Subjoined ->
+            3
+
+        Words ->
+            4
+
+        Phrases ->
+            5
+
+        Sentences ->
+            6
+
+        Punctuation ->
+            7
+
+        Numerals ->
+            7
+
+
 showDifficulty : Difficulty -> String
 showDifficulty diff =
     case diff of
@@ -50,10 +79,10 @@ showDifficulty diff =
             "Consonants"
 
         Vowels ->
-            "Consonants & Vowels"
+            "Vowels"
 
         Subjoined ->
-            "Subjoined & Superscript Letters"
+            "Subjoined Letters"
 
         Words ->
             "Words"
@@ -79,10 +108,11 @@ type alias Model =
     , composeNext : Bool -- when the 'm' key is pressed, get ready for some subjoined letters.
     , lastKeyPress : Maybe Char -- last key press in case we need to compose something
     , difficultyLevel : Difficulty -- e.g. consonants, subjoined letters, words, etc.
+    , maxDifficulty : Difficulty -- so you don't get bumped to lower levels permanently
     , pastSuccesses : List Bool -- for determining whether to progress to the next level
     , largeText : Bool -- whether to display large text for accessibility purposes.
     }
 
 
 init =
-    ( Model "" "" 'ང' False False Nothing Consonants [] False, none )
+    ( Model "" "" 'ང' False False Nothing Consonants Consonants [] False, none )

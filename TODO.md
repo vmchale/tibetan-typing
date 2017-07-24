@@ -1,10 +1,13 @@
 - [x] get it working
   - [ ] nicer design/bigger
   - [x] compose key (fix so it doesn't display red)
+  - [ ] go back to past levels
 - [ ] use local storage to store user progress
 - [ ] longer texts as well
 - [ ] CONTRIBUTING.md guide
 - [ ] get more interesting phrases
+  - [ ] gather from "textbooks" - vocab, etc.
+  - [ ] gather from more interesting stuff?
 - [ ] accessibility buttons
   - [x] large font
 - [ ] don't penalize e.g. the alt key 

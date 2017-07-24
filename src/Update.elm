@@ -154,6 +154,9 @@ update msg st =
         None ->
             st ! []
 
+        SetDifficulty d ->
+            { st | difficultyLevel = d } ! []
+
         RandomString s ->
             { st | nextGoal = dropLeft 1 s, nextChar = getChar s, failed = False } ! []
 
@@ -172,6 +175,15 @@ update msg st =
 
                 recordNum =
                     levelNum st.difficultyLevel
+
+                pastProgress =
+                    (not fail) :: take (recordNum - 1) st.pastSuccesses
+
+                newDifficultyLevel =
+                    if enoughProgress pastProgress st.difficultyLevel then
+                        succ st.difficultyLevel
+                    else
+                        st.difficultyLevel
             in
                 { st
                     | lastKeyPress = Just (mkKeyPress st.composeNext i)
@@ -214,15 +226,12 @@ update msg st =
                         else
                             ' '
                     , failed = fail && not (mkKeyPress st.composeNext i == 'M')
-                    , difficultyLevel =
-                        let
-                            x =
-                                (not fail) :: take (recordNum - 1) st.pastSuccesses
-                        in
-                            if enoughProgress x st.difficultyLevel then
-                                succ st.difficultyLevel
-                            else
-                                st.difficultyLevel
+                    , difficultyLevel = newDifficultyLevel
+                    , maxDifficulty =
+                        if toInt newDifficultyLevel >= toInt st.difficultyLevel then
+                            st.maxDifficulty
+                        else
+                            newDifficultyLevel
                     , composeNext = mkKeyPress st.composeNext i == 'M'
                 }
                     ! (if (not done) then
