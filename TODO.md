@@ -1,7 +1,8 @@
 - [x] get it working
   - [ ] nicer design/bigger
   - [x] compose key (fix so it doesn't display red)
-  - [ ] go back to past levels
+  - [x] go back to past levels
+    - [ ] reset progress?
 - [ ] use local storage to store user progress
 - [ ] longer texts as well
 - [ ] CONTRIBUTING.md guide
