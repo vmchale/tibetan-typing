@@ -229,7 +229,7 @@ update msg st =
                     , failed = fail && not (mkKeyPress st.composeNext i == 'M')
                     , difficultyLevel = newDifficultyLevel
                     , maxDifficulty =
-                        if toInt newDifficultyLevel <= toInt st.difficultyLevel then
+                        if toInt newDifficultyLevel < toInt st.difficultyLevel then
                             st.maxDifficulty
                         else
                             newDifficultyLevel

@@ -21,5 +21,5 @@ updateWithStorage msg model =
             update msg model
     in
         ( newModel
-        , Cmd.batch [ setStorage (showDifficulty newModel.difficultyLevel), cmds ]
+        , Cmd.batch [ setStorage (showDifficulty newModel.maxDifficulty), cmds ]
         )
