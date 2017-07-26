@@ -5,14 +5,14 @@
 This is an elm app I wrote trains your ability to type. It was inspired
 by a [similar project](https://github.com/hoelzro/elm-typing-tutor) for Russian,
 but it implements several special features for subjoined & superscript
-consonants.
+consonants and thus was rewritten from scratch.
 
 While it is not the first such program, it has a far more modern design than a
 [2013 project](http://ieeexplore.ieee.org/document/6743395/?reload=true)
 using flash.
 
 It is a work in progress, so it may have flaws in the
-sample sentences, accessibility, or implementation. Feel free to open up a pull request if
+sample sentences, accessibility, or implementation. Currently, it needs sample sentences, words, and  Feel free to open up a pull request if
 you find something!
 
 ## Use
