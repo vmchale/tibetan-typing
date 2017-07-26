@@ -121,7 +121,7 @@ displayMessage : Bool -> Difficulty -> Html Msg
 displayMessage b difficulty =
     div []
         [ span [ largeText b ] [ text "Available Lessons: " ]
-        , div [] (intersperse (text " | ") <| (map2 (\diff str -> span [ onClick (SetDifficulty diff) ] [ text str ]) allDifficulties (List.map showDifficulty (filter (\d -> toInt d <= toInt difficulty) allDifficulties))))
+        , span [ largeText b ] (intersperse (text " | ") <| (map2 (\diff str -> span [ onClick (SetDifficulty diff) ] [ text str ]) allDifficulties (List.map showDifficulty (filter (\d -> toInt d <= toInt difficulty) allDifficulties))))
         ]
 
 
