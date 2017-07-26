@@ -9,14 +9,14 @@ import Subscriptions exposing (subscriptions)
 
 
 main =
-    programWithFlags { init = init, view = view, update = updateWithStorage, subscriptions = subscriptions }
+    programWithFlags { init = init, view = view, update = updateAndStore, subscriptions = subscriptions }
 
 
 port setStorage : String -> Cmd msg
 
 
-updateWithStorage : Msg -> Model -> ( Model, Cmd Msg )
-updateWithStorage msg model =
+updateAndStore : Msg -> Model -> ( Model, Cmd Msg )
+updateAndStore msg model =
     let
         ( newModel, cmds ) =
             update msg model

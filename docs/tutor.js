@@ -12290,11 +12290,11 @@ var _vmchale$typing_tutor$Update_Keys$c = function (s) {
 var _vmchale$typing_tutor$Update_Keys$subjoinedCharsLatin = A2(
 	_elm_lang$core$List$map,
 	_vmchale$typing_tutor$Update_Keys$c,
-	A2(_elm_lang$core$String$split, '', '9C9Y9L9R'));
+	A2(_elm_lang$core$String$split, '', '9C9Y9L9R9G9K9/9T9D9N9B9F9H9[9\\9Q9.'));
 var _vmchale$typing_tutor$Update_Keys$subjoinedChars = A2(
 	_elm_lang$core$List$map,
 	_vmchale$typing_tutor$Update_Keys$c,
-	A2(_elm_lang$core$String$split, '', 'སྐཀྱཀླཀྲ'));
+	A2(_elm_lang$core$String$split, '', 'སྐཀྱཀླཀྲསྔསྒསྙསྟསྡསྣསྤསྦསྨསྩསྫལྕལྗ'));
 var _vmchale$typing_tutor$Update_Keys$keymapSubjoined = _elm_lang$core$Dict$fromList(
 	A2(
 		_elm_lang$core$List$map,

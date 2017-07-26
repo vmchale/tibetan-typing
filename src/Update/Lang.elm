@@ -42,7 +42,7 @@ sagoyatak =
 
 rago : Array String
 rago =
-    fromList [ "རྐ", "རྒ", "རྔ", "རྗ", "རྙ", "རྟ", "རྡ", "རྣ", "རྣ", "རྦ", "རྨ", "རྩ", "རྫ" ]
+    fromList [ "རྐ", "རྒ", "རྔ", "རྗ", "རྙ", "རྟ", "རྡ", "རྣ", "རྦ", "རྨ", "རྩ", "རྫ" ]
 
 
 sago : Array String
@@ -56,7 +56,7 @@ lago =
 
 
 
--- TODO wazur can appear as a second subscript, e.g. གྲྭ་
+-- TODO wazur can appear as a second subscript, e.g. གྲྭ་ so we need to account for that?
 
 
 wazur : Array String

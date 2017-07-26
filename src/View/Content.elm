@@ -47,11 +47,11 @@ allDifficulties =
     [ Consonants, Vowels, SubjoinedEasy, Subjoined, Words, Phrases, Sentences, Punctuation, Numerals ]
 
 
-displayMessage : Bool -> Difficulty -> Html Msg
-displayMessage b difficulty =
+displayMessage : Bool -> Difficulty -> Difficulty -> Html Msg
+displayMessage b difficulty current =
     div []
         [ span [ largeText b ] [ text "Available Lessons: " ]
-        , span [ largeText b ] (intersperse (text " | ") <| (map2 (\diff str -> span [ onClick (SetDifficulty diff) ] [ text str ]) allDifficulties (List.map showDifficulty (filter (\d -> toInt d <= toInt difficulty) allDifficulties))))
+        , span [ largeText b ] (intersperse (text " | ") <| (map2 (\diff str -> span [ onClick (SetDifficulty diff), colorCurrent diff current ] [ text str ]) allDifficulties (List.map showDifficulty (filter (\d -> toInt d <= toInt difficulty) allDifficulties))))
         ]
 
 

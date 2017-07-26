@@ -1,6 +1,6 @@
 {
     "version": "1.0.0",
-    "summary": "Typing game to practicee Tibetan.",
+    "summary": "Typing game to practice Tibetan.",
     "repository": "https://github.com/vmchale/typing-tutor.git",
     "license": "BSD3",
     "source-directories": [

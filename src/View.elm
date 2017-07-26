@@ -38,7 +38,7 @@ view model =
             , span [ colorAttribute green ] [ span [ largeText model.largeText ] [ text << first <| (progressBar model) ] ]
             , span [ colorAttribute grey ] [ span [ largeText model.largeText ] [ text << second <| (progressBar model) ] ]
             ]
-        , displayMessage model.largeText model.maxDifficulty
+        , displayMessage model.largeText model.maxDifficulty model.difficultyLevel
         , helper model.difficultyLevel model.largeText
         , p [] []
         , img [ attribute "src" "kb.jpg" ] []

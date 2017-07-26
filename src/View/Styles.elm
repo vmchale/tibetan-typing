@@ -25,6 +25,14 @@ colorFailed b =
         colorAttribute black
 
 
+colorCurrent : Difficulty -> Difficulty -> Attribute Msg
+colorCurrent d diff =
+    if d == diff then
+        colorAttribute darkOrange
+    else
+        style []
+
+
 pageStyles : Styles
 pageStyles =
     [ marginTop "80px", marginLeft "80px", marginRight "160px", ( "font", "Tahoma, Geneva, sans-serif" ) ]

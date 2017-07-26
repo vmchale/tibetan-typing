@@ -19,12 +19,12 @@ c s =
 
 subjoinedCharsLatin : List Char
 subjoinedCharsLatin =
-    map c <| split "" "9C9Y9L9R9G9K9/9T9D9N9B9F9H9[9\\9Q9."
+    map c <| split "" "9C9Y9L9R9G9K9/9T9D9N9B9F9H9[9\\9Q9.9="
 
 
 subjoinedChars : List Char
 subjoinedChars =
-    map c <| split "" "སྐཀྱཀླཀྲསྔསྒསྙསྟསྡསྣསྤསྦསྨསྩསྫལྕལྗ"
+    map c <| split "" "སྐཀྱཀླཀྲསྔསྒསྙསྟསྡསྣསྤསྦསྨསྩསྫལྕལྗཀྭ"
 
 
 tibChars : List Char
@@ -77,15 +77,18 @@ helper c =
             toCode c
 
 
-keymapSubjoined : Dict KeyCode Char
-keymapSubjoined =
+makeKeyMap : List Char -> List Char -> Dict KeyCode Char
+makeKeyMap latin tibetan =
     Dict.fromList <|
         map (\( char, c ) -> ( helper char, c )) <|
-            map2 (,) subjoinedCharsLatin subjoinedChars
+            map2 (,) latin tibetan
+
+
+keymapSubjoined : Dict KeyCode Char
+keymapSubjoined =
+    makeKeyMap subjoinedCharsLatin subjoinedChars
 
 
 keymap : Dict KeyCode Char
 keymap =
-    Dict.fromList <|
-        map (\( char, c ) -> ( helper char, c )) <|
-            map2 (,) latinChars tibChars
+    makeKeyMap latinChars tibChars
