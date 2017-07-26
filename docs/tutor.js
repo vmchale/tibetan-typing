@@ -11184,6 +11184,11 @@ var _vmchale$typing_tutor$View_Styles$colorAttribute = function (color) {
 var _vmchale$typing_tutor$View_Styles$colorFailed = function (b) {
 	return b ? _vmchale$typing_tutor$View_Styles$colorAttribute(_elm_lang$core$Color$red) : _vmchale$typing_tutor$View_Styles$colorAttribute(_elm_lang$core$Color$black);
 };
+var _vmchale$typing_tutor$View_Styles$colorCurrent = F2(
+	function (d, diff) {
+		return _elm_lang$core$Native_Utils.eq(d, diff) ? _vmchale$typing_tutor$View_Styles$colorAttribute(_elm_lang$core$Color$darkOrange) : _elm_lang$html$Html_Attributes$style(
+			{ctor: '[]'});
+	});
 
 var _vmchale$typing_tutor$Update_Lang$sentences = _elm_lang$core$Array$fromList(
 	{
@@ -12015,21 +12020,17 @@ var _vmchale$typing_tutor$Update_Lang$rago = _elm_lang$core$Array$fromList(
 									_0: 'རྣ',
 									_1: {
 										ctor: '::',
-										_0: 'རྣ',
+										_0: 'རྦ',
 										_1: {
 											ctor: '::',
-											_0: 'རྦ',
+											_0: 'རྨ',
 											_1: {
 												ctor: '::',
-												_0: 'རྨ',
+												_0: 'རྩ',
 												_1: {
 													ctor: '::',
-													_0: 'རྩ',
-													_1: {
-														ctor: '::',
-														_0: 'རྫ',
-														_1: {ctor: '[]'}
-													}
+													_0: 'རྫ',
+													_1: {ctor: '[]'}
 												}
 											}
 										}
@@ -12279,10 +12280,32 @@ var _vmchale$typing_tutor$Update_Keys$helper = function (c) {
 			return _elm_lang$core$Char$toCode(c);
 	}
 };
+var _vmchale$typing_tutor$Update_Keys$makeKeyMap = F2(
+	function (latin, tibetan) {
+		return _elm_lang$core$Dict$fromList(
+			A2(
+				_elm_lang$core$List$map,
+				function (_p1) {
+					var _p2 = _p1;
+					return {
+						ctor: '_Tuple2',
+						_0: _vmchale$typing_tutor$Update_Keys$helper(_p2._0),
+						_1: _p2._1
+					};
+				},
+				A3(
+					_elm_lang$core$List$map2,
+					F2(
+						function (v0, v1) {
+							return {ctor: '_Tuple2', _0: v0, _1: v1};
+						}),
+					latin,
+					tibetan)));
+	});
 var _vmchale$typing_tutor$Update_Keys$c = function (s) {
-	var _p1 = _elm_lang$core$String$uncons(s);
-	if (_p1.ctor === 'Just') {
-		return _p1._0._0;
+	var _p3 = _elm_lang$core$String$uncons(s);
+	if (_p3.ctor === 'Just') {
+		return _p3._0._0;
 	} else {
 		return _elm_lang$core$Native_Utils.chr('?');
 	}
@@ -12290,30 +12313,12 @@ var _vmchale$typing_tutor$Update_Keys$c = function (s) {
 var _vmchale$typing_tutor$Update_Keys$subjoinedCharsLatin = A2(
 	_elm_lang$core$List$map,
 	_vmchale$typing_tutor$Update_Keys$c,
-	A2(_elm_lang$core$String$split, '', '9C9Y9L9R9G9K9/9T9D9N9B9F9H9[9\\9Q9.'));
+	A2(_elm_lang$core$String$split, '', '9C9Y9L9R9G9K9/9T9D9N9B9F9H9[9\\9Q9.9='));
 var _vmchale$typing_tutor$Update_Keys$subjoinedChars = A2(
 	_elm_lang$core$List$map,
 	_vmchale$typing_tutor$Update_Keys$c,
-	A2(_elm_lang$core$String$split, '', 'སྐཀྱཀླཀྲསྔསྒསྙསྟསྡསྣསྤསྦསྨསྩསྫལྕལྗ'));
-var _vmchale$typing_tutor$Update_Keys$keymapSubjoined = _elm_lang$core$Dict$fromList(
-	A2(
-		_elm_lang$core$List$map,
-		function (_p2) {
-			var _p3 = _p2;
-			return {
-				ctor: '_Tuple2',
-				_0: _vmchale$typing_tutor$Update_Keys$helper(_p3._0),
-				_1: _p3._1
-			};
-		},
-		A3(
-			_elm_lang$core$List$map2,
-			F2(
-				function (v0, v1) {
-					return {ctor: '_Tuple2', _0: v0, _1: v1};
-				}),
-			_vmchale$typing_tutor$Update_Keys$subjoinedCharsLatin,
-			_vmchale$typing_tutor$Update_Keys$subjoinedChars)));
+	A2(_elm_lang$core$String$split, '', 'སྐཀྱཀླཀྲསྔསྒསྙསྟསྡསྣསྤསྦསྨསྩསྫལྕལྗཀྭ'));
+var _vmchale$typing_tutor$Update_Keys$keymapSubjoined = A2(_vmchale$typing_tutor$Update_Keys$makeKeyMap, _vmchale$typing_tutor$Update_Keys$subjoinedCharsLatin, _vmchale$typing_tutor$Update_Keys$subjoinedChars);
 var _vmchale$typing_tutor$Update_Keys$tibChars = A2(
 	_elm_lang$core$List$map,
 	_vmchale$typing_tutor$Update_Keys$c,
@@ -12322,25 +12327,7 @@ var _vmchale$typing_tutor$Update_Keys$latinChars = A2(
 	_elm_lang$core$List$map,
 	_vmchale$typing_tutor$Update_Keys$c,
 	A2(_elm_lang$core$String$split, '', '`-=QWERTYUIOP[]\\ASDFGHJKL;\'ZXCVBN,./'));
-var _vmchale$typing_tutor$Update_Keys$keymap = _elm_lang$core$Dict$fromList(
-	A2(
-		_elm_lang$core$List$map,
-		function (_p4) {
-			var _p5 = _p4;
-			return {
-				ctor: '_Tuple2',
-				_0: _vmchale$typing_tutor$Update_Keys$helper(_p5._0),
-				_1: _p5._1
-			};
-		},
-		A3(
-			_elm_lang$core$List$map2,
-			F2(
-				function (v0, v1) {
-					return {ctor: '_Tuple2', _0: v0, _1: v1};
-				}),
-			_vmchale$typing_tutor$Update_Keys$latinChars,
-			_vmchale$typing_tutor$Update_Keys$tibChars)));
+var _vmchale$typing_tutor$Update_Keys$keymap = A2(_vmchale$typing_tutor$Update_Keys$makeKeyMap, _vmchale$typing_tutor$Update_Keys$latinChars, _vmchale$typing_tutor$Update_Keys$tibChars);
 
 var _vmchale$typing_tutor$Update$getArray = function (d) {
 	var _p0 = d;
@@ -12670,8 +12657,8 @@ var _vmchale$typing_tutor$View_Content$allDifficulties = {
 		}
 	}
 };
-var _vmchale$typing_tutor$View_Content$displayMessage = F2(
-	function (b, difficulty) {
+var _vmchale$typing_tutor$View_Content$displayMessage = F3(
+	function (b, difficulty, current) {
 		return A2(
 			_elm_lang$html$Html$div,
 			{ctor: '[]'},
@@ -12711,7 +12698,11 @@ var _vmchale$typing_tutor$View_Content$displayMessage = F2(
 												ctor: '::',
 												_0: _elm_lang$html$Html_Events$onClick(
 													_vmchale$typing_tutor$State_Types$SetDifficulty(diff)),
-												_1: {ctor: '[]'}
+												_1: {
+													ctor: '::',
+													_0: A2(_vmchale$typing_tutor$View_Styles$colorCurrent, diff, current),
+													_1: {ctor: '[]'}
+												}
 											},
 											{
 												ctor: '::',
@@ -13128,7 +13119,7 @@ var _vmchale$typing_tutor$View$view = function (model) {
 								}),
 							_1: {
 								ctor: '::',
-								_0: A2(_vmchale$typing_tutor$View_Content$displayMessage, model.largeText, model.maxDifficulty),
+								_0: A3(_vmchale$typing_tutor$View_Content$displayMessage, model.largeText, model.maxDifficulty, model.difficultyLevel),
 								_1: {
 									ctor: '::',
 									_0: A2(_vmchale$typing_tutor$View_Content$helper, model.difficultyLevel, model.largeText),
@@ -13180,7 +13171,7 @@ var _vmchale$typing_tutor$Main$setStorage = _elm_lang$core$Native_Platform.outgo
 	function (v) {
 		return v;
 	});
-var _vmchale$typing_tutor$Main$updateWithStorage = F2(
+var _vmchale$typing_tutor$Main$updateAndStore = F2(
 	function (msg, model) {
 		var _p0 = A2(_vmchale$typing_tutor$Update$update, msg, model);
 		var newModel = _p0._0;
@@ -13202,7 +13193,7 @@ var _vmchale$typing_tutor$Main$updateWithStorage = F2(
 		};
 	});
 var _vmchale$typing_tutor$Main$main = _elm_lang$html$Html$programWithFlags(
-	{init: _vmchale$typing_tutor$State$init, view: _vmchale$typing_tutor$View$view, update: _vmchale$typing_tutor$Main$updateWithStorage, subscriptions: _vmchale$typing_tutor$Subscriptions$subscriptions})(
+	{init: _vmchale$typing_tutor$State$init, view: _vmchale$typing_tutor$View$view, update: _vmchale$typing_tutor$Main$updateAndStore, subscriptions: _vmchale$typing_tutor$Subscriptions$subscriptions})(
 	_elm_lang$core$Json_Decode$oneOf(
 		{
 			ctor: '::',
