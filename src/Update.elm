@@ -2,6 +2,7 @@ module Update exposing (update, levelNum)
 
 import State exposing (..)
 import Update.Lang exposing (..)
+import Update.Keys exposing (..)
 import Random exposing (int, Generator)
 import Platform.Cmd exposing (none, Cmd)
 import Dict exposing (get)

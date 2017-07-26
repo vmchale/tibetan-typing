@@ -1,9 +1,7 @@
 module Update.Lang exposing (..)
 
-import String exposing (split, uncons)
-import Char exposing (KeyCode, toCode)
-import List exposing (map, map2, foldr)
-import Array exposing (Array, fromList, append)
+import String exposing (split)
+import Array exposing (Array, fromList, append, foldr)
 import Dict exposing (Dict)
 
 
@@ -12,64 +10,64 @@ consonants =
     fromList <| split "" "ཨཧཝཅཆརཏཡཕཙཚཛའསདབངམགལཞཟཤཀཁཔནཐཇཉ"
 
 
-yatak : List String
+yatak : Array String
 yatak =
-    [ "ཀྱ", "གྱ", "ཁྱ", "པྱ", "ཕྱ", "བྱ", "མྱ" ]
+    fromList [ "ཀྱ", "གྱ", "ཁྱ", "པྱ", "ཕྱ", "བྱ", "མྱ" ]
 
 
-latak : List String
+latak : Array String
 latak =
-    [ "ཀླ", "གླ", "བླ", "ཟླ", "རླ", "སླ" ]
+    fromList [ "ཀླ", "གླ", "བླ", "ཟླ", "རླ", "སླ" ]
 
 
-ratak : List String
+ratak : Array String
 ratak =
-    [ "ཀྲ", "ཁྲ", "གྲ", "དྲ", "ནྲ", "ཕྲ", "པྲ", "བྲ", "མྲ", "ཤྲ", "སྲ", "ཧྲ" ]
+    fromList [ "ཀྲ", "ཁྲ", "གྲ", "དྲ", "ནྲ", "ཕྲ", "པྲ", "བྲ", "མྲ", "ཤྲ", "སྲ", "ཧྲ" ]
 
 
-ragoyatak : List String
+ragoyatak : Array String
 ragoyatak =
-    [ "རྐྱ", "རྒྱ", "རྨྱ" ]
+    fromList [ "རྐྱ", "རྒྱ", "རྨྱ" ]
 
 
-sagoratak : List String
+sagoratak : Array String
 sagoratak =
-    [ "སྐྲ", "སྒྲ", "སྤྲ", "སྦྲ", "སྨྲ" ]
+    fromList [ "སྐྲ", "སྒྲ", "སྤྲ", "སྦྲ", "སྨྲ" ]
 
 
-sagoyatak : List String
+sagoyatak : Array String
 sagoyatak =
-    [ "སྐྱ", "སྒྱ", "སྤྱ", "སྦྱ", "སྨྱ" ]
+    fromList [ "སྐྱ", "སྒྱ", "སྤྱ", "སྦྱ", "སྨྱ" ]
 
 
-rago : List String
+rago : Array String
 rago =
-    [ "རྐ", "རྒ", "རྔ", "རྗ", "རྙ", "རྟ", "རྡ", "རྣ", "རྣ", "རྦ", "རྨ", "རྩ", "རྫ" ]
+    fromList [ "རྐ", "རྒ", "རྔ", "རྗ", "རྙ", "རྟ", "རྡ", "རྣ", "རྣ", "རྦ", "རྨ", "རྩ", "རྫ" ]
 
 
-sago : List String
+sago : Array String
 sago =
-    [ "སྐ", "སྒ", "སྔ", "སྙ", "སྟ", "སྡ", "སྣ", "སྤ", "སྦ", "སྨ", "སྩ" ]
+    fromList [ "སྐ", "སྒ", "སྔ", "སྙ", "སྟ", "སྡ", "སྣ", "སྤ", "སྦ", "སྨ", "སྩ" ]
 
 
-lago : List String
+lago : Array String
 lago =
-    [ "ལྐ", "ལྒ", "ལྔ", "ལྕ", "ལྗ", "ལྟ", "ལྡ", "ལྤ", "ལྦ" ]
+    fromList [ "ལྐ", "ལྒ", "ལྔ", "ལྕ", "ལྗ", "ལྟ", "ལྡ", "ལྤ", "ལྦ" ]
 
 
-wazur : List String
+wazur : Array String
 wazur =
-    [ "ཀྭ", "ཁྭ", "གྭ", "ཉྭ", "དྭ", "ཚྭ", "ཞྭ", "ཟྭ", "རྭ", "ལྭ", "ཤྭ", "ཧྭ" ]
+    fromList [ "ཀྭ", "ཁྭ", "གྭ", "ཉྭ", "དྭ", "ཚྭ", "ཞྭ", "ཟྭ", "རྭ", "ལྭ", "ཤྭ", "ཧྭ" ]
+
+
+subjoinedFolded : Array String
+subjoinedFolded =
+    foldr append ragoyatak (fromList [ sagoratak, sagoyatak ])
 
 
 subjoinedEasy : Array String
 subjoinedEasy =
-    fromList subjoinedEasyL
-
-
-subjoinedEasyL : List String
-subjoinedEasyL =
-    foldr (++) (ratak) [ yatak, latak, rago, lago, sago ]
+    foldr append (ratak) (fromList [ yatak, latak, rago, lago, sago ])
 
 
 words : Array String
@@ -100,93 +98,3 @@ phrases =
 sentences : Array String
 sentences =
     fromList [ "་བོད་སྐད་ལ་", "ང་ན་སོང།", "ཁྱེད་རང་མིང་ག་ར་ཡིན།", "ང་ཨ་རི་ནས་ཡིན།" ]
-
-
-
--- We need to map the keycode to a Tibetan letter/numeral.
--- This allows users to type in Tibetan even without installing any special keyboards.
--- Ideally we'd have a nice flashing keyboard at the bottom too?
-
-
-c : String -> Char
-c s =
-    case uncons s of
-        Just ( x, _ ) ->
-            x
-
-        Nothing ->
-            '?'
-
-
-subjoinedCharsLatin : List Char
-subjoinedCharsLatin =
-    map c <| split "" "9C9Y9L9R"
-
-
-subjoinedChars : List Char
-subjoinedChars =
-    map c <| split "" "སྐཀྱཀླཀྲ"
-
-
-tibChars : List Char
-tibChars =
-    map c <| split "" "ཨཧཝཅཆེརཏཡིོུཕཙཚཛའསདབངམ་གལཞ།ཟཤཀཁཔནཐཇཉ"
-
-
-latinChars : List Char
-latinChars =
-    map c <| split "" "`-=QWERTYUIOP[]\\ASDFGHJKL;'ZXCVBN,./"
-
-
-helper : Char -> KeyCode
-helper c =
-    case c of
-        '[' ->
-            219
-
-        ']' ->
-            221
-
-        '\\' ->
-            220
-
-        ';' ->
-            186
-
-        '\'' ->
-            222
-
-        '/' ->
-            191
-
-        ',' ->
-            188
-
-        '=' ->
-            187
-
-        '-' ->
-            189
-
-        '`' ->
-            192
-
-        '.' ->
-            190
-
-        _ ->
-            toCode c
-
-
-keymapSubjoined : Dict KeyCode Char
-keymapSubjoined =
-    Dict.fromList <|
-        map (\( char, c ) -> ( helper char, c )) <|
-            map2 (,) subjoinedCharsLatin subjoinedChars
-
-
-keymap : Dict KeyCode Char
-keymap =
-    Dict.fromList <|
-        map (\( char, c ) -> ( helper char, c )) <|
-            map2 (,) latinChars tibChars
