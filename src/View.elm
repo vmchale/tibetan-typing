@@ -93,7 +93,7 @@ helper diff b =
         Words ->
             p [] [ span [ largeText b ] [ text "Words separate units by the '་' character (called a ཚེག). These units consist of a root letter, and possibly a vowel marker, prefix letter, suffix, or second suffix" ] ]
 
-        Subjoined ->
+        SubjoinedEasy ->
             p [] [ span [ largeText b ] [ text "To subjoin a letter, type the top consonant, followed by the compose key ('m') and then the bottom letter. Type any vowels after that." ] ]
 
         Phrases ->
@@ -111,7 +111,7 @@ helper diff b =
 
 allDifficulties : List Difficulty
 allDifficulties =
-    [ Consonants, Vowels, Subjoined, Words, Phrases, Sentences, Punctuation, Numerals ]
+    [ Consonants, Vowels, SubjoinedEasy, Words, Phrases, Sentences, Punctuation, Numerals ]
 
 
 displayMessage : Bool -> Difficulty -> Html Msg

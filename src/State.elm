@@ -9,7 +9,7 @@ import Task exposing (Task)
 type Difficulty
     = Consonants
     | Vowels
-    | Subjoined
+    | SubjoinedEasy
     | Words
     | Phrases
     | Sentences
@@ -31,16 +31,13 @@ succ d =
             Vowels
 
         Vowels ->
-            Subjoined
+            SubjoinedEasy
 
-        Subjoined ->
+        SubjoinedEasy ->
             Words
 
         Words ->
             Phrases
-
-        Phrases ->
-            Sentences
 
         _ ->
             Sentences
@@ -55,7 +52,7 @@ toInt d =
         Vowels ->
             2
 
-        Subjoined ->
+        SubjoinedEasy ->
             3
 
         Words ->
@@ -84,7 +81,7 @@ fromString str =
             Vowels
 
         "Subjoined Letters" ->
-            Subjoined
+            SubjoinedEasy
 
         "Words" ->
             Words
@@ -114,7 +111,7 @@ showDifficulty diff =
         Vowels ->
             "Vowels"
 
-        Subjoined ->
+        SubjoinedEasy ->
             "Subjoined Letters"
 
         Words ->

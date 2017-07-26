@@ -1,8 +1,10 @@
 - [x] get it working
   - [ ] nicer design/bigger
   - [x] compose key (fix so it doesn't display red)
+    - [ ] better hints/guidance for subjoined letters etc.
   - [x] go back to past levels
     - [ ] reset progress?
+    - [ ] highlight current level
 - [ ] use local storage to store user progress
 - [ ] longer texts as well
 - [ ] CONTRIBUTING.md guide

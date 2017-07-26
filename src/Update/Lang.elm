@@ -2,7 +2,7 @@ module Update.Lang exposing (..)
 
 import String exposing (split, uncons)
 import Char exposing (KeyCode, toCode)
-import List exposing (map, map2)
+import List exposing (map, map2, foldr)
 import Array exposing (Array, fromList, append)
 import Dict exposing (Dict)
 
@@ -12,24 +12,64 @@ consonants =
     fromList <| split "" "ཨཧཝཅཆརཏཡཕཙཚཛའསདབངམགལཞཟཤཀཁཔནཐཇཉ"
 
 
-yatak : Array String
+yatak : List String
 yatak =
-    fromList [ "ཀྱ", "གྱ", "ཁྱ", "དྱ", "པྱ", "ཕྱ", "བྱ", "མྱ" ]
+    [ "ཀྱ", "གྱ", "ཁྱ", "པྱ", "ཕྱ", "བྱ", "མྱ" ]
 
 
-latak : Array String
+latak : List String
 latak =
-    fromList [ "ཀླ", "གླ", "བླ", "ཟླ", "རླ", "སླ" ]
+    [ "ཀླ", "གླ", "བླ", "ཟླ", "རླ", "སླ" ]
 
 
-ratak : Array String
+ratak : List String
 ratak =
-    fromList [ "ཀྲ", "ཁྲ", "གྲ", "དྲ", "ནྲ", "ཕྲ", "པྲ", "བྲ", "མྲ", "ཤྲ", "སྲ", "ཧྲ" ]
+    [ "ཀྲ", "ཁྲ", "གྲ", "དྲ", "ནྲ", "ཕྲ", "པྲ", "བྲ", "མྲ", "ཤྲ", "སྲ", "ཧྲ" ]
 
 
-subjoined : Array String
-subjoined =
-    append yatak (append latak ratak)
+ragoyatak : List String
+ragoyatak =
+    [ "རྐྱ", "རྒྱ", "རྨྱ" ]
+
+
+sagoratak : List String
+sagoratak =
+    [ "སྐྲ", "སྒྲ", "སྤྲ", "སྦྲ", "སྨྲ" ]
+
+
+sagoyatak : List String
+sagoyatak =
+    [ "སྐྱ", "སྒྱ", "སྤྱ", "སྦྱ", "སྨྱ" ]
+
+
+rago : List String
+rago =
+    [ "རྐ", "རྒ", "རྔ", "རྗ", "རྙ", "རྟ", "རྡ", "རྣ", "རྣ", "རྦ", "རྨ", "རྩ", "རྫ" ]
+
+
+sago : List String
+sago =
+    [ "སྐ", "སྒ", "སྔ", "སྙ", "སྟ", "སྡ", "སྣ", "སྤ", "སྦ", "སྨ", "སྩ" ]
+
+
+lago : List String
+lago =
+    [ "ལྐ", "ལྒ", "ལྔ", "ལྕ", "ལྗ", "ལྟ", "ལྡ", "ལྤ", "ལྦ" ]
+
+
+wazur : List String
+wazur =
+    [ "ཀྭ", "ཁྭ", "གྭ", "ཉྭ", "དྭ", "ཚྭ", "ཞྭ", "ཟྭ", "རྭ", "ལྭ", "ཤྭ", "ཧྭ" ]
+
+
+subjoinedEasy : Array String
+subjoinedEasy =
+    fromList subjoinedEasyL
+
+
+subjoinedEasyL : List String
+subjoinedEasyL =
+    foldr (++) (ratak) [ yatak, latak, rago, lago, sago ]
 
 
 words : Array String

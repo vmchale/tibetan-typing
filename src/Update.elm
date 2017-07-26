@@ -105,7 +105,7 @@ levelNum d =
         Vowels ->
             40
 
-        Subjoined ->
+        SubjoinedEasy ->
             30
 
         Words ->
@@ -130,8 +130,8 @@ getArray d =
         Vowels ->
             vowels
 
-        Subjoined ->
-            subjoined
+        SubjoinedEasy ->
+            subjoinedEasy
 
         Words ->
             words
