@@ -96,6 +96,9 @@ helper diff b =
         SubjoinedEasy ->
             p [] [ span [ largeText b ] [ text "To subjoin a letter, type the top consonant, followed by the compose key ('m') and then the bottom letter. Type any vowels after that." ] ]
 
+        Subjoined ->
+            p [] [ span [ largeText b ] [ text "Letters can have both a superscript and subscript adjoined (and sometimes even a vowel!)" ] ]
+
         Phrases ->
             p [] []
 
@@ -111,7 +114,7 @@ helper diff b =
 
 allDifficulties : List Difficulty
 allDifficulties =
-    [ Consonants, Vowels, SubjoinedEasy, Words, Phrases, Sentences, Punctuation, Numerals ]
+    [ Consonants, Vowels, SubjoinedEasy, Subjoined, Words, Phrases, Sentences, Punctuation, Numerals ]
 
 
 displayMessage : Bool -> Difficulty -> Html Msg

@@ -60,6 +60,11 @@ wazur =
     fromList [ "ཀྭ", "ཁྭ", "གྭ", "ཉྭ", "དྭ", "ཚྭ", "ཞྭ", "ཟྭ", "རྭ", "ལྭ", "ཤྭ", "ཧྭ" ]
 
 
+subjoined : Array String
+subjoined =
+    append subjoinedEasy subjoinedEasy
+
+
 subjoinedFolded : Array String
 subjoinedFolded =
     foldr append ragoyatak <| fromList [ sagoratak, sagoyatak ]

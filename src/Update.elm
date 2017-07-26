@@ -3,7 +3,7 @@ module Update exposing (update, levelNum)
 import State exposing (..)
 import Update.Lang exposing (..)
 import Update.Keys exposing (..)
-import Random exposing (int, Generator)
+import Random exposing (int, Generator, pair)
 import Platform.Cmd exposing (none, Cmd)
 import Dict exposing (get)
 import Keyboard exposing (KeyCode)
@@ -63,7 +63,7 @@ fromMaybe def val =
 
 getVowel : Array String -> Cmd Msg
 getVowel ls =
-    generate (\i -> RandomString <| (fromMaybe "Error" (Array.get i ls)) ++ (fromMaybe "Error" (Array.get (i % 5) vowelModifiers))) (int 0 (length ls - 1))
+    generate (\( i, j ) -> RandomString <| (fromMaybe "Error" (Array.get i ls)) ++ (fromMaybe "Error" (Array.get j vowelModifiers))) <| pair (int 0 (length ls - 1)) (int 0 4)
 
 
 getNext : Bool -> Array String -> Cmd Msg
@@ -124,6 +124,9 @@ levelNum d =
         SubjoinedEasy ->
             30
 
+        Subjoined ->
+            60
+
         Words ->
             35
 
@@ -148,6 +151,9 @@ getArray d =
 
         SubjoinedEasy ->
             subjoinedEasy
+
+        Subjoined ->
+            subjoined
 
         Words ->
             words
@@ -193,6 +199,9 @@ update msg st =
                 appendVowel =
                     case st.difficultyLevel of
                         Vowels ->
+                            True
+
+                        Subjoined ->
                             True
 
                         _ ->

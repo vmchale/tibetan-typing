@@ -10,6 +10,7 @@ type Difficulty
     = Consonants
     | Vowels
     | SubjoinedEasy
+    | Subjoined
     | Words
     | Phrases
     | Sentences
@@ -34,6 +35,9 @@ succ d =
             SubjoinedEasy
 
         SubjoinedEasy ->
+            Subjoined
+
+        Subjoined ->
             Words
 
         Words ->
@@ -55,20 +59,23 @@ toInt d =
         SubjoinedEasy ->
             3
 
-        Words ->
+        Subjoined ->
             4
 
-        Phrases ->
+        Words ->
             5
 
-        Sentences ->
+        Phrases ->
             6
 
-        Punctuation ->
+        Sentences ->
             7
 
+        Punctuation ->
+            8
+
         Numerals ->
-            7
+            8
 
 
 fromString : String -> Difficulty
@@ -82,6 +89,9 @@ fromString str =
 
         "Subjoined Letters" ->
             SubjoinedEasy
+
+        "Folded Letters" ->
+            Subjoined
 
         "Words" ->
             Words
@@ -113,6 +123,9 @@ showDifficulty diff =
 
         SubjoinedEasy ->
             "Subjoined Letters"
+
+        Subjoined ->
+            "Folded Letters"
 
         Words ->
             "Words"
