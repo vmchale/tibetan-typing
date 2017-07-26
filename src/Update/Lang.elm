@@ -1,6 +1,6 @@
 module Update.Lang exposing (..)
 
-import String exposing (split)
+import String exposing (split, dropLeft)
 import Array exposing (Array, fromList, append, foldr)
 import Dict exposing (Dict)
 
@@ -62,17 +62,22 @@ wazur =
 
 subjoinedFolded : Array String
 subjoinedFolded =
-    foldr append ragoyatak (fromList [ sagoratak, sagoyatak ])
+    foldr append ragoyatak <| fromList [ sagoratak, sagoyatak ]
 
 
 subjoinedEasy : Array String
 subjoinedEasy =
-    foldr append (ratak) (fromList [ yatak, latak, rago, lago, sago ])
+    foldr append ratak <| fromList [ yatak, latak, rago, lago, sago ]
 
 
 words : Array String
 words =
     fromList [ "བོད་", "ཁྱེད་རང་", "ངའི", "ཡོད་", "སོང་", "རེད་" ]
+
+
+vowelModifiers : Array String
+vowelModifiers =
+    Array.map (dropLeft 1) <| fromList [ "འ", "འེ", "འི", "འོ", "འུ" ]
 
 
 vowels : Array String

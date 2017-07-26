@@ -61,8 +61,23 @@ fromMaybe def val =
             def
 
 
-getNext : Array String -> Cmd Msg
-getNext ls =
+getVowel : Array String -> Cmd Msg
+getVowel ls =
+    generate (\i -> RandomString <| (fromMaybe "Error" (Array.get i ls)) ++ (fromMaybe "Error" (Array.get (i % 5) vowelModifiers))) (int 0 (length ls - 1))
+
+
+getNext : Bool -> Array String -> Cmd Msg
+getNext b sa =
+    case b of
+        True ->
+            getVowel sa
+
+        _ ->
+            getNextPlain sa
+
+
+getNextPlain : Array String -> Cmd Msg
+getNextPlain ls =
     generate (\i -> RandomString << fromMaybe "Error" << (Array.get i) <| ls) (int 0 (length ls - 1))
 
 
@@ -129,7 +144,7 @@ getArray d =
             consonants
 
         Vowels ->
-            vowels
+            consonants
 
         SubjoinedEasy ->
             subjoinedEasy
@@ -174,6 +189,14 @@ update msg st =
                     (not fail)
                         && String.length st.nextGoal
                         == 0
+
+                appendVowel =
+                    case st.difficultyLevel of
+                        Vowels ->
+                            True
+
+                        _ ->
+                            False
 
                 recordNum =
                     levelNum st.difficultyLevel
@@ -239,5 +262,5 @@ update msg st =
                     ! (if (not done) then
                         []
                        else
-                        [ getNext << getArray <| st.difficultyLevel ]
+                        [ getNext appendVowel << getArray <| st.difficultyLevel ]
                       )
