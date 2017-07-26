@@ -55,6 +55,10 @@ lago =
     fromList [ "ལྐ", "ལྒ", "ལྔ", "ལྕ", "ལྗ", "ལྟ", "ལྡ", "ལྤ", "ལྦ" ]
 
 
+
+-- TODO wazur can appear as a second subscript, e.g. གྲྭ་
+
+
 wazur : Array String
 wazur =
     fromList [ "ཀྭ", "ཁྭ", "གྭ", "ཉྭ", "དྭ", "ཚྭ", "ཞྭ", "ཟྭ", "རྭ", "ལྭ", "ཤྭ", "ཧྭ" ]

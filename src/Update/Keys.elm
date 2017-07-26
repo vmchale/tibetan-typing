@@ -19,12 +19,12 @@ c s =
 
 subjoinedCharsLatin : List Char
 subjoinedCharsLatin =
-    map c <| split "" "9C9Y9L9R9G"
+    map c <| split "" "9C9Y9L9R9G9K9/9T9D9N9B9F9H9[9\\9Q9."
 
 
 subjoinedChars : List Char
 subjoinedChars =
-    map c <| split "" "སྐཀྱཀླཀྲསྔ"
+    map c <| split "" "སྐཀྱཀླཀྲསྔསྒསྙསྟསྡསྣསྤསྦསྨསྩསྫལྕལྗ"
 
 
 tibChars : List Char
