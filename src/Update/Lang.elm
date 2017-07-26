@@ -102,7 +102,7 @@ numerals =
 
 phrases : Array String
 phrases =
-    fromList [ "ཨ་རི་ནས་" ]
+    fromList [ "བོད་སྐད་ལ་", "ཨ་རི་ནས་" ]
 
 
 headlines : Array String
@@ -112,4 +112,4 @@ headlines =
 
 sentences : Array String
 sentences =
-    fromList [ "་བོད་སྐད་ལ་", "ང་ན་སོང།", "ཁྱེད་རང་མིང་ག་ར་ཡིན།", "ང་ཨ་རི་ནས་ཡིན།" ]
+    fromList [ "ང་ན་སོང།", "ཁྱེད་རང་མིང་ག་ར་ཡིན།", "ང་ཨ་རི་ནས་ཡིན།" ]

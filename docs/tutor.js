@@ -11193,18 +11193,14 @@ var _vmchale$typing_tutor$View_Styles$colorCurrent = F2(
 var _vmchale$typing_tutor$Update_Lang$sentences = _elm_lang$core$Array$fromList(
 	{
 		ctor: '::',
-		_0: '་བོད་སྐད་ལ་',
+		_0: 'ང་ན་སོང།',
 		_1: {
 			ctor: '::',
-			_0: 'ང་ན་སོང།',
+			_0: 'ཁྱེད་རང་མིང་ག་ར་ཡིན།',
 			_1: {
 				ctor: '::',
-				_0: 'ཁྱེད་རང་མིང་ག་ར་ཡིན།',
-				_1: {
-					ctor: '::',
-					_0: 'ང་ཨ་རི་ནས་ཡིན།',
-					_1: {ctor: '[]'}
-				}
+				_0: 'ང་ཨ་རི་ནས་ཡིན།',
+				_1: {ctor: '[]'}
 			}
 		}
 	});
@@ -11229,8 +11225,12 @@ var _vmchale$typing_tutor$Update_Lang$headlines = _elm_lang$core$Array$fromList(
 var _vmchale$typing_tutor$Update_Lang$phrases = _elm_lang$core$Array$fromList(
 	{
 		ctor: '::',
-		_0: 'ཨ་རི་ནས་',
-		_1: {ctor: '[]'}
+		_0: 'བོད་སྐད་ལ་',
+		_1: {
+			ctor: '::',
+			_0: 'ཨ་རི་ནས་',
+			_1: {ctor: '[]'}
+		}
 	});
 var _vmchale$typing_tutor$Update_Lang$numerals = _elm_lang$core$Array$fromList(
 	A2(_elm_lang$core$String$split, '', '༠༡༢༣༤༥༦༧༨༩'));
