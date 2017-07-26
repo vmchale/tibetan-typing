@@ -1,5 +1,7 @@
 # Elm typing game
 
+[![Build Status](https://travis-ci.org/vmchale/tibetan-tutor.svg?branch=master)](https://travis-ci.org/vmchale/tibetan-tutor)
+
 This is an elm app I wrote trains your ability to type. It was inspired
 by a [similar project](https://github.com/hoelzro/elm-typing-tutor) for Russian,
 but it implements several special features for subjoined & superscript

@@ -1,7 +1,8 @@
 port module Main exposing (..)
 
 import Html exposing (..)
-import State exposing (..)
+import State.Types exposing (..)
+import State exposing (showDifficulty, init)
 import View exposing (view)
 import Update exposing (update)
 import Subscriptions exposing (subscriptions)

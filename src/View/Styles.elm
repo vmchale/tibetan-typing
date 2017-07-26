@@ -1,7 +1,7 @@
 module View.Styles exposing (..)
 
 import Html exposing (..)
-import State exposing (..)
+import State.Types exposing (..)
 import Html.Attributes exposing (style)
 import Style exposing (..)
 import Color exposing (..)

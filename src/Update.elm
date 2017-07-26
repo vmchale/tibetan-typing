@@ -1,6 +1,7 @@
 module Update exposing (update, levelNum)
 
-import State exposing (..)
+import State exposing (toInt, succ)
+import State.Types exposing (..)
 import Update.Lang exposing (..)
 import Update.Keys exposing (..)
 import Random exposing (int, Generator, pair)

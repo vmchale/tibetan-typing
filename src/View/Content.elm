@@ -1,7 +1,8 @@
 module View.Content exposing (..)
 
 import Html exposing (..)
-import State exposing (..)
+import State exposing (toInt, showDifficulty)
+import State.Types exposing (..)
 import Color exposing (..)
 import Color.Convert exposing (colorToHex)
 import Html.Events exposing (onClick)
