@@ -56,7 +56,8 @@ lago =
 
 
 
--- TODO wazur can appear as a second subscript, e.g. གྲྭ་ so we need to account for that?
+-- TODO wazur can appear as a second subscript, e.g. གྲྭ་
+-- we make a list of all such common second subscripts
 
 
 wazur : Array String
