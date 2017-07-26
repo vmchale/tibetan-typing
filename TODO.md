@@ -1,7 +1,7 @@
 - [x] get it working
   - [ ] nicer design/bigger
   - [x] compose key (fix so it doesn't display red)
-    - [ ] better hints/guidance for subjoined letters etc.
+    - [x] better hints/guidance for subjoined letters etcR.
   - [x] go back to past levels
     - [ ] reset progress?
     - [ ] highlight current level
@@ -13,4 +13,6 @@
   - [ ] gather from more interesting stuff?
 - [ ] accessibility buttons
   - [x] large font
+  - [ ] key controls for switch levels
+  - [ ] contrast (e.g. disable colors)
 - [ ] don't penalize e.g. the alt key 
