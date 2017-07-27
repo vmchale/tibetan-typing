@@ -1,9 +1,6 @@
 module State exposing (..)
 
 import Platform.Cmd exposing (none, batch)
-import Keyboard exposing (downs)
-import Array exposing (Array, length)
-import Task exposing (Task)
 import State.Types exposing (..)
 
 
@@ -94,8 +91,36 @@ fromString str =
             Consonants
 
 
-showDifficulty : Difficulty -> String
-showDifficulty diff =
+showDifficulty : Language -> Difficulty -> String
+showDifficulty _ d =
+    showDifficultyEnglish d
+
+
+showDifficultyBo : Difficulty -> String
+showDifficultyBo diff =
+    case diff of
+        Consonants ->
+            "གསལ་བྱེད་"
+
+        Vowels ->
+            "དབྱངས་"
+
+        -- FIXME subscripts etc.
+        SubjoinedEasy ->
+            "ར་མགོ་ཅན"
+
+        Words ->
+            "མིང་ཚིག"
+
+        Sentences ->
+            "ཚིག་རྐད་།"
+
+        _ ->
+            ""
+
+
+showDifficultyEnglish : Difficulty -> String
+showDifficultyEnglish diff =
     case diff of
         Consonants ->
             "Consonants"
@@ -129,7 +154,7 @@ init : Maybe String -> ( Model, Cmd Msg )
 init savedState =
     case savedState of
         Just str ->
-            ( Model "" "" 'ང' False False Nothing Consonants (fromString str) [] False, none )
+            ( Model "" "" 'ང' False False Nothing Consonants (fromString str) [] False English, none )
 
         Nothing ->
-            ( Model "" "" 'ང' False False Nothing Consonants Consonants [] False, none )
+            ( Model "" "" 'ང' False False Nothing Consonants Consonants [] False English, none )

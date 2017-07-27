@@ -10989,7 +10989,9 @@ var _vmchale$typing_tutor$State_Types$Model = function (a) {
 							return function (h) {
 								return function (i) {
 									return function (j) {
-										return {nextGoal: a, completed: b, nextChar: c, failed: d, composeNext: e, lastKeyPress: f, difficultyLevel: g, maxDifficulty: h, pastSuccesses: i, largeText: j};
+										return function (k) {
+											return {nextGoal: a, completed: b, nextChar: c, failed: d, composeNext: e, lastKeyPress: f, difficultyLevel: g, maxDifficulty: h, pastSuccesses: i, largeText: j, helpLanguage: k};
+										};
 									};
 								};
 							};
@@ -11000,6 +11002,8 @@ var _vmchale$typing_tutor$State_Types$Model = function (a) {
 		};
 	};
 };
+var _vmchale$typing_tutor$State_Types$Tibetan = {ctor: 'Tibetan'};
+var _vmchale$typing_tutor$State_Types$English = {ctor: 'English'};
 var _vmchale$typing_tutor$State_Types$Numerals = {ctor: 'Numerals'};
 var _vmchale$typing_tutor$State_Types$Punctuation = {ctor: 'Punctuation'};
 var _vmchale$typing_tutor$State_Types$Sentences = {ctor: 'Sentences'};
@@ -11020,7 +11024,7 @@ var _vmchale$typing_tutor$State_Types$KeyMsg = function (a) {
 };
 var _vmchale$typing_tutor$State_Types$None = {ctor: 'None'};
 
-var _vmchale$typing_tutor$State$showDifficulty = function (diff) {
+var _vmchale$typing_tutor$State$showDifficultyEnglish = function (diff) {
 	var _p0 = diff;
 	switch (_p0.ctor) {
 		case 'Consonants':
@@ -11043,9 +11047,30 @@ var _vmchale$typing_tutor$State$showDifficulty = function (diff) {
 			return 'Tibetan Numerals';
 	}
 };
+var _vmchale$typing_tutor$State$showDifficultyBo = function (diff) {
+	var _p1 = diff;
+	switch (_p1.ctor) {
+		case 'Consonants':
+			return 'གསལ་བྱེད་';
+		case 'Vowels':
+			return 'དབྱངས་';
+		case 'SubjoinedEasy':
+			return 'ར་མགོ་ཅན';
+		case 'Words':
+			return 'མིང་ཚིག';
+		case 'Sentences':
+			return 'ཚིག་རྐད་།';
+		default:
+			return '';
+	}
+};
+var _vmchale$typing_tutor$State$showDifficulty = F2(
+	function (_p2, d) {
+		return _vmchale$typing_tutor$State$showDifficultyEnglish(d);
+	});
 var _vmchale$typing_tutor$State$fromString = function (str) {
-	var _p1 = str;
-	switch (_p1) {
+	var _p3 = str;
+	switch (_p3) {
 		case 'Consonants':
 			return _vmchale$typing_tutor$State_Types$Consonants;
 		case 'Vowels':
@@ -11069,14 +11094,14 @@ var _vmchale$typing_tutor$State$fromString = function (str) {
 	}
 };
 var _vmchale$typing_tutor$State$init = function (savedState) {
-	var _p2 = savedState;
-	if (_p2.ctor === 'Just') {
+	var _p4 = savedState;
+	if (_p4.ctor === 'Just') {
 		return {
 			ctor: '_Tuple2',
 			_0: _vmchale$typing_tutor$State_Types$Model('')('')(
 				_elm_lang$core$Native_Utils.chr('ང'))(false)(false)(_elm_lang$core$Maybe$Nothing)(_vmchale$typing_tutor$State_Types$Consonants)(
-				_vmchale$typing_tutor$State$fromString(_p2._0))(
-				{ctor: '[]'})(false),
+				_vmchale$typing_tutor$State$fromString(_p4._0))(
+				{ctor: '[]'})(false)(_vmchale$typing_tutor$State_Types$English),
 			_1: _elm_lang$core$Platform_Cmd$none
 		};
 	} else {
@@ -11084,14 +11109,14 @@ var _vmchale$typing_tutor$State$init = function (savedState) {
 			ctor: '_Tuple2',
 			_0: _vmchale$typing_tutor$State_Types$Model('')('')(
 				_elm_lang$core$Native_Utils.chr('ང'))(false)(false)(_elm_lang$core$Maybe$Nothing)(_vmchale$typing_tutor$State_Types$Consonants)(_vmchale$typing_tutor$State_Types$Consonants)(
-				{ctor: '[]'})(false),
+				{ctor: '[]'})(false)(_vmchale$typing_tutor$State_Types$English),
 			_1: _elm_lang$core$Platform_Cmd$none
 		};
 	}
 };
 var _vmchale$typing_tutor$State$toInt = function (d) {
-	var _p3 = d;
-	switch (_p3.ctor) {
+	var _p5 = d;
+	switch (_p5.ctor) {
 		case 'Consonants':
 			return 1;
 		case 'Vowels':
@@ -11113,8 +11138,8 @@ var _vmchale$typing_tutor$State$toInt = function (d) {
 	}
 };
 var _vmchale$typing_tutor$State$succ = function (d) {
-	var _p4 = d;
-	switch (_p4.ctor) {
+	var _p6 = d;
+	switch (_p6.ctor) {
 		case 'Consonants':
 			return _vmchale$typing_tutor$State_Types$Vowels;
 		case 'Vowels':
@@ -11196,7 +11221,7 @@ var _vmchale$typing_tutor$Update_Lang$sentences = _elm_lang$core$Array$fromList(
 		_0: 'ང་ན་སོང།',
 		_1: {
 			ctor: '::',
-			_0: 'ཁྱེད་རང་མིང་ག་ར་ཡིན།',
+			_0: 'ཁྱེད་རང་གི་མིང་ག་ར་ཡིན།',
 			_1: {
 				ctor: '::',
 				_0: 'ང་ཨ་རི་ནས་ཡིན།',
@@ -12149,7 +12174,7 @@ var _vmchale$typing_tutor$View_Content$displayMessage = F3(
 								_vmchale$typing_tutor$View_Content$allDifficulties,
 								A2(
 									_elm_lang$core$List$map,
-									_vmchale$typing_tutor$State$showDifficulty,
+									_vmchale$typing_tutor$State$showDifficulty(_vmchale$typing_tutor$State_Types$English),
 									A2(
 										_elm_lang$core$List$filter,
 										function (d) {
@@ -12467,7 +12492,7 @@ var _vmchale$typing_tutor$View$view = function (model) {
 											A2(
 												_elm_lang$core$Basics_ops['++'],
 												'Current lesson: ',
-												_vmchale$typing_tutor$State$showDifficulty(model.difficultyLevel))),
+												A2(_vmchale$typing_tutor$State$showDifficulty, model.helpLanguage, model.difficultyLevel))),
 										_1: {ctor: '[]'}
 									}),
 								_1: {ctor: '[]'}
@@ -12586,6 +12611,9 @@ var _vmchale$typing_tutor$View$view = function (model) {
 			}
 		});
 };
+var _vmchale$typing_tutor$View$prompt = function (_p3) {
+	return _elm_lang$html$Html$text('Type the following:');
+};
 var _vmchale$typing_tutor$View$onKeyDown = function (tagger) {
 	return A2(
 		_elm_lang$html$Html_Events$on,
@@ -12619,7 +12647,7 @@ var _vmchale$typing_tutor$Main$updateAndStore = F2(
 				{
 					ctor: '::',
 					_0: _vmchale$typing_tutor$Main$setStorage(
-						_vmchale$typing_tutor$State$showDifficulty(newModel.maxDifficulty)),
+						A2(_vmchale$typing_tutor$State$showDifficulty, _vmchale$typing_tutor$State_Types$English, newModel.maxDifficulty)),
 					_1: {
 						ctor: '::',
 						_0: cmds,

@@ -3,7 +3,6 @@ module Update.Keys exposing (..)
 import String exposing (split, uncons)
 import Char exposing (KeyCode, toCode)
 import List exposing (map, map2, foldr)
-import Array exposing (Array, fromList)
 import Dict exposing (Dict)
 
 
@@ -25,6 +24,10 @@ subjoinedCharsLatin =
 subjoinedChars : List Char
 subjoinedChars =
     map c <| split "" "སྐཀྱཀླཀྲསྔསྒསྙསྟསྡསྣསྤསྦསྨསྩསྫལྕལྗཀྭ"
+
+
+
+-- TODO ལྗ might not work?
 
 
 tibChars : List Char

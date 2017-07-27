@@ -2,7 +2,6 @@ module Update.Lang exposing (..)
 
 import String exposing (split, dropLeft)
 import Array exposing (Array, fromList, append, foldr)
-import Dict exposing (Dict)
 
 
 consonants : Array String
@@ -112,4 +111,4 @@ headlines =
 
 sentences : Array String
 sentences =
-    fromList [ "ང་ན་སོང།", "ཁྱེད་རང་མིང་ག་ར་ཡིན།", "ང་ཨ་རི་ནས་ཡིན།" ]
+    fromList [ "ང་ན་སོང།", "ཁྱེད་རང་གི་མིང་ག་ར་ཡིན།", "ང་ཨ་རི་ནས་ཡིན།" ]

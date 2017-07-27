@@ -3,8 +3,6 @@ module View.Content exposing (..)
 import Html exposing (..)
 import State exposing (toInt, showDifficulty)
 import State.Types exposing (..)
-import Color exposing (..)
-import Color.Convert exposing (colorToHex)
 import Html.Events exposing (onClick)
 import List exposing (..)
 import Update exposing (levelNum)
@@ -47,11 +45,15 @@ allDifficulties =
     [ Consonants, Vowels, SubjoinedEasy, Subjoined, Words, Phrases, Sentences, Punctuation, Numerals ]
 
 
+
+-- TODO function should accept language as an argument
+
+
 displayMessage : Bool -> Difficulty -> Difficulty -> Html Msg
 displayMessage b difficulty current =
     div []
         [ span [ largeText b ] [ text "Available Lessons: " ]
-        , span [ largeText b ] (intersperse (text " | ") <| (map2 (\diff str -> span [ onClick (SetDifficulty diff), colorCurrent diff current ] [ text str ]) allDifficulties (List.map showDifficulty (filter (\d -> toInt d <= toInt difficulty) allDifficulties))))
+        , span [ largeText b ] (intersperse (text " | ") <| (map2 (\diff str -> span [ onClick (SetDifficulty diff), colorCurrent diff current ] [ text str ]) allDifficulties (List.map (showDifficulty English) (filter (\d -> toInt d <= toInt difficulty) allDifficulties))))
         ]
 
 

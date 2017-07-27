@@ -5,7 +5,6 @@ import State.Types exposing (..)
 import State exposing (showDifficulty)
 import Html.Attributes exposing (style)
 import Color exposing (..)
-import List exposing (..)
 import String exposing (concat, fromChar)
 import Tuple exposing (first, second)
 import Json.Decode as Json
@@ -20,6 +19,11 @@ onKeyDown tagger =
     on "keydown" (Json.map tagger keyCode)
 
 
+prompt : Language -> Html Msg
+prompt _ =
+    text "Type the following:"
+
+
 view : Model -> Html Msg
 view model =
     div [ style pageStyles ]
@@ -32,7 +36,7 @@ view model =
             , span [ colorFailed model.failed, tibetanText model.largeText ] [ text << fromChar <| model.nextChar ]
             , span [ tibetanText model.largeText ] [ text model.nextGoal ]
             ]
-        , p [] [ span [ largeText model.largeText ] [ text ("Current lesson: " ++ (showDifficulty model.difficultyLevel)) ] ]
+        , p [] [ span [ largeText model.largeText ] [ text ("Current lesson: " ++ (showDifficulty model.helpLanguage model.difficultyLevel)) ] ]
         , p []
             [ span [ largeText model.largeText ] [ text "Progress towards next lesson: " ]
             , span [ colorAttribute green ] [ span [ largeText model.largeText ] [ text << first <| (progressBar model) ] ]

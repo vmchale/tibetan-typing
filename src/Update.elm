@@ -7,14 +7,12 @@ import Update.Keys exposing (..)
 import Random exposing (int, Generator, pair)
 import Platform.Cmd exposing (none, Cmd)
 import Dict exposing (get)
-import Keyboard exposing (KeyCode)
 import Maybe exposing (..)
 import Char exposing (fromCode)
 import List exposing (take, drop, reverse, repeat, foldr)
 import String exposing (fromChar, uncons, dropLeft)
 import Random exposing (int, map, generate)
 import Array exposing (Array, length)
-import Task exposing (Task)
 
 
 addCompleted : Int -> String

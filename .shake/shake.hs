@@ -34,4 +34,4 @@ main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
     "tutor.js" %> \_ -> do
         sourceFiles <- getDirectoryFiles "" ["src//*.elm", "elm-package.json", "index.html"]
         need sourceFiles
-        cmd "elm-make --yes src/Main.elm --output tutor.js"
+        cmd "elm-make --yes src/Main.elm --output tutor.js --warn"

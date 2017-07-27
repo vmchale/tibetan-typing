@@ -8,6 +8,7 @@ import Update exposing (update)
 import Subscriptions exposing (subscriptions)
 
 
+main : Program (Maybe String) Model Msg
 main =
     programWithFlags { init = init, view = view, update = updateAndStore, subscriptions = subscriptions }
 
@@ -15,6 +16,8 @@ main =
 port setStorage : String -> Cmd msg
 
 
+{-| Updates are in English
+-}
 updateAndStore : Msg -> Model -> ( Model, Cmd Msg )
 updateAndStore msg model =
     let
@@ -22,5 +25,5 @@ updateAndStore msg model =
             update msg model
     in
         ( newModel
-        , Cmd.batch [ setStorage (showDifficulty newModel.maxDifficulty), cmds ]
+        , Cmd.batch [ setStorage (showDifficulty English newModel.maxDifficulty), cmds ]
         )
