@@ -3,8 +3,7 @@
   - [x] compose key (fix so it doesn't display red)
     - [x] better hints/guidance for subjoined letters etcR.
   - [x] go back to past levels
-    - [ ] reset progress?
-    - [ ] highlight current level
+    - [x] highlight current level
 - [x] use local storage to store user progress
 - [ ] longer texts as well
 - [ ] CONTRIBUTING.md guide
