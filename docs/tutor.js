@@ -11916,13 +11916,13 @@ var _vmchale$typing_tutor$Update$getNext = F2(
 		}
 	});
 var _vmchale$typing_tutor$Update$const = F2(
-	function (a, x) {
+	function (a, _p8) {
 		return a;
 	});
 var _vmchale$typing_tutor$Update$mkKeyPress = F2(
 	function (subjoined, i) {
-		var _p8 = subjoined;
-		if (_p8 === false) {
+		var _p9 = subjoined;
+		if (_p9 === false) {
 			return A2(
 				_elm_lang$core$Maybe$withDefault,
 				_elm_lang$core$Char$fromCode(i),
@@ -11935,25 +11935,25 @@ var _vmchale$typing_tutor$Update$mkKeyPress = F2(
 		}
 	});
 var _vmchale$typing_tutor$Update$addCompletedSubjoined = function (i) {
-	var _p9 = A2(_elm_lang$core$Dict$get, i, _vmchale$typing_tutor$Update_Keys$keymapSubjoined);
-	if (_p9.ctor === 'Just') {
-		return _elm_lang$core$String$fromChar(_p9._0);
-	} else {
-		return '';
-	}
-};
-var _vmchale$typing_tutor$Update$addCompleted = function (i) {
-	var _p10 = A2(_elm_lang$core$Dict$get, i, _vmchale$typing_tutor$Update_Keys$keymap);
+	var _p10 = A2(_elm_lang$core$Dict$get, i, _vmchale$typing_tutor$Update_Keys$keymapSubjoined);
 	if (_p10.ctor === 'Just') {
 		return _elm_lang$core$String$fromChar(_p10._0);
 	} else {
 		return '';
 	}
 };
+var _vmchale$typing_tutor$Update$addCompleted = function (i) {
+	var _p11 = A2(_elm_lang$core$Dict$get, i, _vmchale$typing_tutor$Update_Keys$keymap);
+	if (_p11.ctor === 'Just') {
+		return _elm_lang$core$String$fromChar(_p11._0);
+	} else {
+		return '';
+	}
+};
 var _vmchale$typing_tutor$Update$update = F2(
 	function (msg, st) {
-		var _p11 = msg;
-		switch (_p11.ctor) {
+		var _p12 = msg;
+		switch (_p12.ctor) {
 			case 'None':
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
@@ -11964,22 +11964,22 @@ var _vmchale$typing_tutor$Update$update = F2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						st,
-						{difficultyLevel: _p11._0}),
+						{difficultyLevel: _p12._0}),
 					{ctor: '[]'});
 			case 'RandomString':
-				var _p12 = _p11._0;
+				var _p13 = _p12._0;
 				return A2(
 					_elm_lang$core$Platform_Cmd_ops['!'],
 					_elm_lang$core$Native_Utils.update(
 						st,
 						{
-							nextGoal: A2(_elm_lang$core$String$dropLeft, 1, _p12),
-							nextChar: _vmchale$typing_tutor$Update$getChar(_p12),
+							nextGoal: A2(_elm_lang$core$String$dropLeft, 1, _p13),
+							nextChar: _vmchale$typing_tutor$Update$getChar(_p13),
 							failed: false
 						}),
 					{ctor: '[]'});
 			default:
-				if (_p11._0 === 113) {
+				if (_p12._0 === 113) {
 					return A2(
 						_elm_lang$core$Platform_Cmd_ops['!'],
 						_elm_lang$core$Native_Utils.update(
@@ -11987,11 +11987,11 @@ var _vmchale$typing_tutor$Update$update = F2(
 							{largeText: !st.largeText}),
 						{ctor: '[]'});
 				} else {
-					var _p15 = _p11._0;
+					var _p16 = _p12._0;
 					var recordNum = _vmchale$typing_tutor$Update$levelNum(st.difficultyLevel);
 					var appendVowel = function () {
-						var _p13 = st.difficultyLevel;
-						switch (_p13.ctor) {
+						var _p14 = st.difficultyLevel;
+						switch (_p14.ctor) {
 							case 'Vowels':
 								return true;
 							case 'Subjoined':
@@ -12001,7 +12001,7 @@ var _vmchale$typing_tutor$Update$update = F2(
 						}
 					}();
 					var fail = !_elm_lang$core$Native_Utils.eq(
-						A2(_vmchale$typing_tutor$Update$mkKeyPress, st.composeNext, _p15),
+						A2(_vmchale$typing_tutor$Update$mkKeyPress, st.composeNext, _p16),
 						st.nextChar);
 					var done = (!fail) && _elm_lang$core$Native_Utils.eq(
 						_elm_lang$core$String$length(st.nextGoal),
@@ -12018,7 +12018,7 @@ var _vmchale$typing_tutor$Update$update = F2(
 							st,
 							{
 								lastKeyPress: _elm_lang$core$Maybe$Just(
-									A2(_vmchale$typing_tutor$Update$mkKeyPress, st.composeNext, _p15)),
+									A2(_vmchale$typing_tutor$Update$mkKeyPress, st.composeNext, _p16)),
 								pastSuccesses: function () {
 									var x = {
 										ctor: '::',
@@ -12026,33 +12026,33 @@ var _vmchale$typing_tutor$Update$update = F2(
 										_1: A2(_elm_lang$core$List$take, recordNum - 1, st.pastSuccesses)
 									};
 									return A2(_vmchale$typing_tutor$Update$enoughProgress, x, st.difficultyLevel) ? A2(_elm_lang$core$List$repeat, recordNum, false) : ((!_elm_lang$core$Native_Utils.eq(
-										A2(_vmchale$typing_tutor$Update$mkKeyPress, st.composeNext, _p15),
+										A2(_vmchale$typing_tutor$Update$mkKeyPress, st.composeNext, _p16),
 										_elm_lang$core$Native_Utils.chr('M'))) ? x : st.pastSuccesses);
 								}(),
 								completed: (!done) ? A2(
 									_elm_lang$core$Basics_ops['++'],
 									st.completed,
-									(!fail) ? ((!st.composeNext) ? _vmchale$typing_tutor$Update$addCompleted(_p15) : _vmchale$typing_tutor$Update$addCompletedSubjoined(_p15)) : '') : '',
+									(!fail) ? ((!st.composeNext) ? _vmchale$typing_tutor$Update$addCompleted(_p16) : _vmchale$typing_tutor$Update$addCompletedSubjoined(_p16)) : '') : '',
 								nextGoal: (!fail) ? A2(_elm_lang$core$String$dropLeft, 1, st.nextGoal) : ((!done) ? st.nextGoal : ''),
 								nextChar: ((!fail) && (!done)) ? _vmchale$typing_tutor$Update$getChar(st.nextGoal) : ((!done) ? st.nextChar : _elm_lang$core$Native_Utils.chr(' ')),
 								failed: fail && (!_elm_lang$core$Native_Utils.eq(
-									A2(_vmchale$typing_tutor$Update$mkKeyPress, st.composeNext, _p15),
+									A2(_vmchale$typing_tutor$Update$mkKeyPress, st.composeNext, _p16),
 									_elm_lang$core$Native_Utils.chr('M'))),
 								difficultyLevel: newDifficultyLevel,
 								maxDifficulty: (_elm_lang$core$Native_Utils.cmp(
 									_vmchale$typing_tutor$State$toInt(newDifficultyLevel),
 									_vmchale$typing_tutor$State$toInt(st.maxDifficulty)) < 0) ? st.maxDifficulty : newDifficultyLevel,
 								composeNext: _elm_lang$core$Native_Utils.eq(
-									A2(_vmchale$typing_tutor$Update$mkKeyPress, st.composeNext, _p15),
+									A2(_vmchale$typing_tutor$Update$mkKeyPress, st.composeNext, _p16),
 									_elm_lang$core$Native_Utils.chr('M'))
 							}),
 						(!done) ? {ctor: '[]'} : {
 							ctor: '::',
-							_0: function (_p14) {
+							_0: function (_p15) {
 								return A2(
 									_vmchale$typing_tutor$Update$getNext,
 									appendVowel,
-									_vmchale$typing_tutor$Update$getArray(_p14));
+									_vmchale$typing_tutor$Update$getArray(_p15));
 							}(st.difficultyLevel),
 							_1: {ctor: '[]'}
 						});
@@ -12630,6 +12630,76 @@ var _vmchale$typing_tutor$Subscriptions$subscriptions = function (model) {
 		});
 };
 
+var _vmchale$typing_tutor$Main$controlKeys = function (x) {
+	return !A2(
+		_elm_lang$core$List$member,
+		x,
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			{
+				ctor: '::',
+				_0: 9,
+				_1: {
+					ctor: '::',
+					_0: 13,
+					_1: {
+						ctor: '::',
+						_0: 16,
+						_1: {
+							ctor: '::',
+							_0: 17,
+							_1: {
+								ctor: '::',
+								_0: 18,
+								_1: {
+									ctor: '::',
+									_0: 20,
+									_1: {
+										ctor: '::',
+										_0: 27,
+										_1: {
+											ctor: '::',
+											_0: 45,
+											_1: {
+												ctor: '::',
+												_0: 46,
+												_1: {
+													ctor: '::',
+													_0: 91,
+													_1: {
+														ctor: '::',
+														_0: 116,
+														_1: {
+															ctor: '::',
+															_0: 144,
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				A2(_elm_lang$core$List$range, 33, 40),
+				A2(_elm_lang$core$List$range, 112, 123))));
+};
+var _vmchale$typing_tutor$Main$filterSubscriptions = function (x) {
+	var _p0 = x;
+	if (_p0.ctor === 'KeyMsg') {
+		var _p1 = _p0._0;
+		return _vmchale$typing_tutor$Main$controlKeys(_p1) ? _elm_lang$core$Maybe$Just(
+			_vmchale$typing_tutor$State_Types$KeyMsg(_p1)) : _elm_lang$core$Maybe$Nothing;
+	} else {
+		return _elm_lang$core$Maybe$Just(_p0);
+	}
+};
 var _vmchale$typing_tutor$Main$setStorage = _elm_lang$core$Native_Platform.outgoingPort(
 	'setStorage',
 	function (v) {
@@ -12637,9 +12707,9 @@ var _vmchale$typing_tutor$Main$setStorage = _elm_lang$core$Native_Platform.outgo
 	});
 var _vmchale$typing_tutor$Main$updateAndStore = F2(
 	function (msg, model) {
-		var _p0 = A2(_vmchale$typing_tutor$Update$update, msg, model);
-		var newModel = _p0._0;
-		var cmds = _p0._1;
+		var _p2 = A2(_vmchale$typing_tutor$Update$update, msg, model);
+		var newModel = _p2._0;
+		var cmds = _p2._1;
 		return {
 			ctor: '_Tuple2',
 			_0: newModel,
@@ -12657,7 +12727,18 @@ var _vmchale$typing_tutor$Main$updateAndStore = F2(
 		};
 	});
 var _vmchale$typing_tutor$Main$main = _elm_lang$html$Html$programWithFlags(
-	{init: _vmchale$typing_tutor$State$init, view: _vmchale$typing_tutor$View$view, update: _vmchale$typing_tutor$Main$updateAndStore, subscriptions: _vmchale$typing_tutor$Subscriptions$subscriptions})(
+	{
+		init: _vmchale$typing_tutor$State$init,
+		view: _vmchale$typing_tutor$View$view,
+		update: function (_p3) {
+			return _vmchale$typing_tutor$Main$updateAndStore(
+				A2(
+					_elm_lang$core$Maybe$withDefault,
+					_vmchale$typing_tutor$State_Types$None,
+					_vmchale$typing_tutor$Main$filterSubscriptions(_p3)));
+		},
+		subscriptions: _vmchale$typing_tutor$Subscriptions$subscriptions
+	})(
 	_elm_lang$core$Json_Decode$oneOf(
 		{
 			ctor: '::',

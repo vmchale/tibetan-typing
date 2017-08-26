@@ -8,7 +8,7 @@ import Update exposing (update)
 import Subscriptions exposing (subscriptions)
 import Maybe exposing (withDefault)
 import Keyboard exposing (KeyCode)
-import List exposing (member)
+import List exposing (member, range)
 
 
 main : Program (Maybe String) Model Msg
@@ -47,4 +47,4 @@ filterSubscriptions x =
 
 controlKeys : KeyCode -> Bool
 controlKeys x =
-    not (member x [ 13, 16, 17, 18 ])
+    not (member x ([ 9, 13, 16, 17, 18, 20, 27, 45, 46, 91, 116, 144 ] ++ (range 33 40) ++ (range 112 123)))

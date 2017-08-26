@@ -14,4 +14,4 @@
   - [x] large font
   - [ ] key controls for switching levels
   - [ ] contrast (e.g. disable colors)
-- [ ] don't penalize e.g. the alt key (i.e. do nothing)
+- [x] don't penalize e.g. the alt key (i.e. do nothing)
