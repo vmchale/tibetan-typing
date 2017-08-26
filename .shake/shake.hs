@@ -22,11 +22,6 @@ main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
         putNormal "Opening..."
         cmd "google-chrome index.html"
 
-    phony "deploy" $ do
-        need ["index.html", "tutor.js"]
-        putNormal "Copying to ../../rust/nessa-site/static/tutor.html"
-        cmd "cp index.html ../../rust/nessa-site/static/tutor.html"
-
     phony "commit" $ do
         need ["tutor.js"]
         cmd "cp tutor.js docs/tutor.js"

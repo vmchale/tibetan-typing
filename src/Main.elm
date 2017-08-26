@@ -16,7 +16,7 @@ main =
 port setStorage : String -> Cmd msg
 
 
-{-| Updates are in English
+{-| Updates are in English, though we should probably change that.
 -}
 updateAndStore : Msg -> Model -> ( Model, Cmd Msg )
 updateAndStore msg model =

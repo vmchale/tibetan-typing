@@ -47,7 +47,7 @@ mkKeyPress subjoined i =
 
 const : a -> (b -> a)
 const a =
-    (\x -> a)
+    (\_ -> a)
 
 
 fromMaybe : a -> Maybe a -> a

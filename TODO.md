@@ -5,7 +5,7 @@
   - [x] go back to past levels
     - [ ] reset progress?
     - [ ] highlight current level
-- [ ] use local storage to store user progress
+- [x] use local storage to store user progress
 - [ ] longer texts as well
 - [ ] CONTRIBUTING.md guide
 - [ ] get more interesting phrases
@@ -13,6 +13,6 @@
   - [ ] gather from more interesting stuff?
 - [ ] accessibility buttons
   - [x] large font
-  - [ ] key controls for switch levels
+  - [ ] key controls for switching levels
   - [ ] contrast (e.g. disable colors)
-- [ ] don't penalize e.g. the alt key 
+- [ ] don't penalize e.g. the alt key (i.e. do nothing)
