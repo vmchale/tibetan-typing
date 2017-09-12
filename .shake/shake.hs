@@ -10,7 +10,7 @@ import           Development.Shake.Util
 
 main :: IO ()
 main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
-    want ["index.html", "tutor.js"]
+    want ["index.html", "tutor.min.js"]
 
     phony "clean" $ do
         putNormal "Cleaning files..."
@@ -25,6 +25,10 @@ main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
     phony "commit" $ do
         need ["tutor.js"]
         cmd "cp tutor.js docs/tutor.js"
+
+    "tutor.min.js" %> \_ -> do
+        need ["tutor.js"]
+        cmd Shell "ccjs tutor.js --externs=node > tutor.min.js"
 
     "tutor.js" %> \_ -> do
         sourceFiles <- getDirectoryFiles "" ["src//*.elm", "elm-package.json", "index.html"]

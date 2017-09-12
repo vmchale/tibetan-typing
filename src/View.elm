@@ -45,5 +45,5 @@ view model =
         , displayMessage model.largeText model.maxDifficulty model.difficultyLevel
         , helper model.difficultyLevel model.largeText
         , p [] []
-        , img [ attribute "src" "kb.jpg" ] []
+        , img [ attribute "src" "typing-tutor/kb.jpg" ] []
         ]

@@ -47,4 +47,4 @@ filterSubscriptions x =
 
 controlKeys : KeyCode -> Bool
 controlKeys x =
-    not (member x ([ 9, 13, 16, 17, 18, 20, 27, 45, 46, 91, 116, 144 ] ++ (range 33 40) ++ (range 112 123)))
+    not (member x ([ 9, 13, 16, 17, 18, 20, 27, 45, 46, 91, 116, 144, 112 ] ++ (range 33 40) ++ (range 114 123)))
