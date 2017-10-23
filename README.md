@@ -16,7 +16,7 @@ sample sentences still need refinement.
 
 ## Use
 
-You can try it out yourself [here](http://vmchale.com/tutor.html).
+You can try it out yourself [here](http://vmchale.com/static/tutor.html).
 
 ## Building it
 
