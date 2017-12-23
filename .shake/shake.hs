@@ -1,5 +1,5 @@
 #!/usr/bin/env stack
-{- stack --resolver lts-8.23 --install-ghc
+{- stack --resolver lts-10.0 --install-ghc
     runghc
     --package shake
 -}
@@ -12,6 +12,10 @@ main :: IO ()
 main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
     want ["index.html", "tutor.min.js"]
 
+    "build" %> \_ -> do
+        need [".shake/shake.hs"]
+        command [(Cwd ".shake")] "ghc-8.2.2" ["-O", "shake.hs", "-o", "../build"]
+
     phony "clean" $ do
         putNormal "Cleaning files..."
         removeFilesAfter "elm-stuff" ["//*"]
@@ -21,7 +25,11 @@ main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
     phony "open" $ do
         need ["index.html", "tutor.js"]
         putNormal "Opening..."
-        cmd "google-chrome index.html"
+        cmd "firefox index.html"
+
+    "deploy" ~> do
+        need ["tutor.min.js", "kb.jpg", "index.html"]
+        cmd ["cp", "tutor.min.js", "/home/vanessa/rust/nessa-site/static/typing-tutor"]
 
     phony "commit" $ do
         need ["tutor.js"]

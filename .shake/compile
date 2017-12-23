@@ -1,3 +1,0 @@
-#!/usr/bin/env ion
-cd .shake
-ghc -O2 shake.hs -o ../build

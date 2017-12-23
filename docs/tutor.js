@@ -12596,7 +12596,7 @@ var _vmchale$typing_tutor$View$view = function (model) {
 												_elm_lang$html$Html$img,
 												{
 													ctor: '::',
-													_0: A2(_elm_lang$html$Html_Attributes$attribute, 'src', 'kb.jpg'),
+													_0: A2(_elm_lang$html$Html_Attributes$attribute, 'src', 'typing-tutor/kb.jpg'),
 													_1: {ctor: '[]'}
 												},
 												{ctor: '[]'}),
@@ -12672,7 +12672,11 @@ var _vmchale$typing_tutor$Main$controlKeys = function (x) {
 														_1: {
 															ctor: '::',
 															_0: 144,
-															_1: {ctor: '[]'}
+															_1: {
+																ctor: '::',
+																_0: 112,
+																_1: {ctor: '[]'}
+															}
 														}
 													}
 												}
@@ -12688,7 +12692,7 @@ var _vmchale$typing_tutor$Main$controlKeys = function (x) {
 			A2(
 				_elm_lang$core$Basics_ops['++'],
 				A2(_elm_lang$core$List$range, 33, 40),
-				A2(_elm_lang$core$List$range, 112, 123))));
+				A2(_elm_lang$core$List$range, 114, 123))));
 };
 var _vmchale$typing_tutor$Main$filterSubscriptions = function (x) {
 	var _p0 = x;
