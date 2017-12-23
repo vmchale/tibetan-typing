@@ -29,7 +29,7 @@ main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
 
     "deploy" ~> do
         need ["tutor.min.js", "kb.jpg", "index.html"]
-        cmd ["cp", "tutor.min.js", "/home/vanessa/rust/nessa-site/static/typing-tutor"]
+        cmd ["cp", "tutor.min.js", "/home/vanessa/programming/rust/nessa-site/static/typing-tutor"]
 
     phony "commit" $ do
         need ["tutor.js"]
