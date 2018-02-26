@@ -11,12 +11,12 @@ import Keyboard exposing (KeyCode)
 import List exposing (member, range)
 
 
+port setStorage : String -> Cmd msg
+
+
 main : Program (Maybe String) Model Msg
 main =
     programWithFlags { init = init, view = view, update = updateAndStore << withDefault None << filterSubscriptions, subscriptions = subscriptions }
-
-
-port setStorage : String -> Cmd msg
 
 
 {-| Updates are in English, though we should probably change that.

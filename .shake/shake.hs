@@ -4,7 +4,10 @@
     --package shake
 -}
 import           Development.Shake
+import           Development.Shake.CCJS
+import           Development.Shake.Clean
 import           Development.Shake.Command
+import           Development.Shake.Elm
 import           Development.Shake.FilePath
 import           Development.Shake.Util
 
@@ -14,11 +17,11 @@ main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
 
     "build" %> \_ -> do
         need [".shake/shake.hs"]
-        command [(Cwd ".shake")] "ghc-8.2.2" ["-O", "shake.hs", "-o", "../build"]
+        command [Cwd ".shake"] "ghc-8.2.2" ["-O", "shake.hs", "-o", "../build"]
 
     phony "clean" $ do
         putNormal "Cleaning files..."
-        removeFilesAfter "elm-stuff" ["//*"]
+        cleanElm
         unit $ cmd ["rm", "-f", "tags"]
         cmd "rm -f tutor.js .shake/.shake.database .shake/.shake.lock .shake/shake.o .shake/shake.hi"
 
@@ -35,11 +38,6 @@ main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
         need ["tutor.js"]
         cmd "cp tutor.js docs/tutor.js"
 
-    "tutor.min.js" %> \_ -> do
-        need ["tutor.js"]
-        cmd Shell "ccjs tutor.js --externs=node > tutor.min.js"
+    ccjs ["tutor.js"] "tutor.min.js"
 
-    "tutor.js" %> \_ -> do
-        sourceFiles <- getDirectoryFiles "" ["src//*.elm", "elm-package.json", "index.html"]
-        need sourceFiles
-        cmd "elm-make --yes src/Main.elm --output tutor.js --warn"
+    elmMake ["src/Main.elm"] "tutor.js"
