@@ -40,4 +40,4 @@ main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
 
     ccjs ["tutor.js"] "tutor.min.js"
 
-    elmMake ["src/Main.elm"] "tutor.js"
+    elmMake ["elm-package.json", "index.html"] ["src/Main.elm"] "tutor.js"
