@@ -17,7 +17,7 @@ main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
 
     "build" %> \_ -> do
         need [".shake/shake.hs"]
-        command [Cwd ".shake"] "ghc-8.2.2" ["-O", "shake.hs", "-o", "../build"]
+        command [Cwd ".shake"] "ghc-8.4.1" ["-O", "shake.hs", "-o", "../build"]
 
     phony "clean" $ do
         putNormal "Cleaning files..."
@@ -40,4 +40,4 @@ main = shakeArgs shakeOptions { shakeFiles = ".shake" } $ do
 
     ccjs ["tutor.js"] "tutor.min.js"
 
-    elmMake ["elm-package.json", "index.html"] ["src/Main.elm"] "tutor.js"
+    elmMake ["src/Main.elm"] ["elm-package.json", "index.html"] "tutor.js"
