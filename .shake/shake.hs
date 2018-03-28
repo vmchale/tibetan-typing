@@ -1,8 +1,3 @@
-#!/usr/bin/env stack
-{- stack --resolver lts-10.0 --install-ghc
-    runghc
-    --package shake
--}
 import           Development.Shake
 import           Development.Shake.CCJS
 import           Development.Shake.Clean
